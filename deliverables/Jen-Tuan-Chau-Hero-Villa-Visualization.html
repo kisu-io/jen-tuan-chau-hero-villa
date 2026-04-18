@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Jen Tuan Chau · Hero Villa · Visual Package</title>
+<style>
+  :root{
+    --ink:#1F2937; --warm:#B45309; --soft:#78716C; --rule:#D6D3D1;
+    --ivory:#FAF7F2; --accent:#FEF3C7; --leaf:#365314; --mutedTxt:#57534E;
+    --stone:#44403C; --teak:#5A3A1B; --terracotta:#C87350; --copper:#8C5830;
+    --bay:#94B9C9; --sand:#D8CBB1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--ivory);color:var(--ink);
+    font:16px/1.55 Georgia, "Times New Roman", serif;}
+  body{max-width:1280px;margin:0 auto;padding:0 0 80px;}
+  header.cover{
+    position:relative;height:520px;overflow:hidden;
+    background:linear-gradient(180deg, #A9C4D3 0%, #94B9C9 45%, #E8D9B6 75%, #C9B48F 100%);
+    border-bottom:3px double var(--ink);
+  }
+  header.cover .karst{position:absolute;inset:auto 0 40% 0;height:55%;pointer-events:none;opacity:.55}
+  header.cover h1{
+    position:absolute;left:48px;bottom:70px;margin:0;color:var(--ivory);
+    font:700 54px/1.02 Georgia, serif;letter-spacing:-.5px;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+  }
+  header.cover h1 small{display:block;font:italic 400 22px/1.2 Georgia, serif;
+    color:#FAF7F2cc;margin-top:8px;letter-spacing:.5px}
+  header.cover .badge{
+    position:absolute;top:32px;left:48px;color:var(--ivory);letter-spacing:.35em;
+    font:700 12px/1 "Helvetica Neue", Arial, sans-serif;
+    padding:8px 14px;border:1px solid #FAF7F2aa;background:rgba(31,41,55,.25);
+    backdrop-filter: blur(2px);
+  }
+  header.cover .meta{
+    position:absolute;right:48px;bottom:70px;color:#FAF7F2dd;text-align:right;
+    font:italic 400 14px/1.7 Georgia, serif;
+  }
+  nav.toc{background:#1F2937;color:#FAF7F2;padding:18px 48px;
+    display:flex;gap:18px;flex-wrap:wrap;font:600 12px/1 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing:.15em;text-transform:uppercase;border-bottom:3px solid var(--warm);}
+  nav.toc a{color:#FAF7F2;text-decoration:none;opacity:.75;transition:opacity .2s;padding:4px 0;
+    border-bottom:1px solid transparent}
+  nav.toc a:hover{opacity:1;border-bottom-color:var(--warm)}
+
+  section{padding:56px 48px;border-bottom:1px solid var(--rule)}
+  section h2{font:700 32px/1.15 Georgia, serif;margin:0 0 8px;color:var(--ink);letter-spacing:-.3px}
+  section h2 .num{color:var(--warm);margin-right:14px;font-style:italic;font-weight:400}
+  section h2 + .lede{font:italic 400 18px/1.55 Georgia, serif;color:var(--soft);
+    margin:0 0 32px;max-width:820px}
+  h3{font:700 20px/1.2 Georgia, serif;margin:32px 0 8px;color:var(--ink)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+  .card{background:#fff;border:1px solid var(--rule);padding:24px;border-radius:2px}
+  .card h4{font:700 14px/1.2 "Helvetica Neue", Arial, sans-serif;
+    text-transform:uppercase;letter-spacing:.15em;color:var(--warm);margin:0 0 12px}
+  .card p{margin:6px 0;font-size:15px}
+
+  table.num{width:100%;border-collapse:collapse;font:400 14px/1.5 "Helvetica Neue", Arial, sans-serif}
+  table.num th,table.num td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+  table.num th{background:var(--ink);color:#FAF7F2;font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:11px}
+  table.num td.num-val{font-variant-numeric:tabular-nums;text-align:right}
+  table.num tr:nth-child(even) td{background:var(--ivory)}
+
+  svg.dwg{background:#fff;border:1px solid var(--rule);display:block;width:100%;height:auto}
+  svg.dwg .grid{stroke:#E7E5E4;stroke-width:.5}
+  svg.dwg .outline{fill:none;stroke:var(--ink);stroke-width:1.8}
+  svg.dwg .fill-base{fill:#F5F1EA;stroke:var(--ink);stroke-width:1.2}
+  svg.dwg .fill-extension{fill:#FCE9D2;stroke:var(--warm);stroke-width:1.2}
+  svg.dwg .fill-water{fill:#BCD7E2;stroke:#3C6173;stroke-width:.8}
+  svg.dwg .fill-deck{fill:#C8A98A;stroke:#5A3A1B;stroke-width:.6}
+  svg.dwg .fill-lawn{fill:#CFD9A3;stroke:#697B3B;stroke-width:.6}
+  svg.dwg .fill-planting{fill:#365314;opacity:.55}
+  svg.dwg text{font:11px "Helvetica Neue", Arial, sans-serif;fill:var(--ink)}
+  svg.dwg text.tag{fill:var(--mutedTxt);font-size:10px}
+  svg.dwg text.dim{fill:var(--warm);font-weight:700;font-size:10px}
+  svg.dwg text.title{font:700 13px "Helvetica Neue", Arial, sans-serif;fill:var(--ink);letter-spacing:.1em;text-transform:uppercase}
+  svg.dwg .dimline{stroke:var(--warm);stroke-width:.6;fill:none}
+  svg.dwg .room-label{font:700 11px "Helvetica Neue", Arial, sans-serif;fill:var(--ink);text-anchor:middle}
+  svg.dwg .room-sub{font:italic 9px Georgia, serif;fill:var(--mutedTxt);text-anchor:middle}
+  svg.dwg .grid-label{font:700 10px "Helvetica Neue", Arial, sans-serif;fill:var(--warm)}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-top:12px}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend i{width:14px;height:14px;display:inline-block;border:1px solid var(--ink)}
+
+  .mood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .mood{height:220px;border:1px solid var(--rule);position:relative;overflow:hidden}
+  .mood .cap{position:absolute;left:10px;bottom:10px;color:#FAF7F2;
+    font:italic 400 12px/1.3 Georgia, serif;background:rgba(31,41,55,.55);padding:4px 8px}
+  .tone-terracotta{background:
+    radial-gradient(circle at 30% 20%, #D88766 0%, #C87350 40%, #8C5830 100%)}
+  .tone-ivory{background:
+    linear-gradient(180deg,#FAF7F2 0%, #EBE1CE 100%)}
+  .tone-teak{background:
+    repeating-linear-gradient(92deg, #5A3A1B 0 12px, #704A25 12px 24px, #4A2E13 24px 36px)}
+  .tone-basalt{background:
+    radial-gradient(circle at 60% 40%, #6B6762 0%, #44403C 70%, #2C2825 100%)}
+  .tone-brass{background:
+    linear-gradient(135deg, #C4A063 0%, #9B7A42 45%, #6F5828 100%)}
+  .tone-raffia{background:
+    repeating-linear-gradient(85deg, #D7C69A 0 4px, #C4B185 4px 8px)}
+  .tone-bay{background:
+    linear-gradient(180deg, #C7DDE6 0%, #94B9C9 55%, #5A8699 100%)}
+  .tone-frangipani{background:
+    radial-gradient(circle at 30% 40%, #FAF7F2 0%, #EFE2C1 35%, #DDB96A 70%, #8A5B25 100%)}
+
+  .pillar{display:flex;gap:18px;align-items:flex-start;margin-bottom:14px}
+  .pillar .num{flex:0 0 48px;height:48px;border-radius:50%;background:var(--warm);color:#FAF7F2;
+    display:flex;align-items:center;justify-content:center;font:700 20px Georgia, serif}
+  .pillar .body h4{margin:0 0 4px;font:700 16px/1.2 Georgia, serif}
+  .pillar .body p{margin:0;font-size:14.5px;color:var(--mutedTxt)}
+
+  .kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:16px}
+  .kpi .k{background:#fff;border:1px solid var(--rule);padding:18px;text-align:center}
+  .kpi .k .v{font:700 28px/1.0 Georgia, serif;color:var(--ink)}
+  .kpi .k .l{font:600 10px/1.3 "Helvetica Neue", Arial, sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;color:var(--warm);margin-top:6px}
+  .kpi .k .s{font-size:11px;color:var(--mutedTxt);margin-top:4px}
+
+  .flag{display:inline-block;padding:2px 10px;border-radius:99px;
+    font:700 10px/1.6 "Helvetica Neue", Arial, sans-serif;letter-spacing:.08em;text-transform:uppercase;
+    vertical-align:middle}
+  .flag.ok{background:#dcfce7;color:#14532d;border:1px solid #86efac}
+  .flag.warn{background:#fef3c7;color:#78350f;border:1px solid #fcd34d}
+  .flag.risk{background:#fee2e2;color:#7f1d1d;border:1px solid #fca5a5}
+
+  footer{padding:32px 48px;color:var(--soft);font:italic 14px/1.6 Georgia, serif;
+    text-align:center;border-top:3px double var(--ink)}
+  footer b{color:var(--ink)}
+
+  @media print{nav.toc{display:none}section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="badge">Concept Design · Volume 01</div>
+  <svg class="karst" viewBox="0 0 1280 200" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="mist" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#2C3D4D" stop-opacity="0"/>
+        <stop offset="1" stop-color="#2C3D4D" stop-opacity=".6"/>
+      </linearGradient>
+    </defs>
+    <path fill="url(#mist)" d="M0,200 L0,120 C40,110 80,95 110,85 C140,90 170,75 200,72 L220,85 L260,60 L290,70 L330,55 L370,80 L400,68 L440,88 L475,72 L510,95 L555,80 L600,105 L650,90 L700,115 L750,100 L800,118 L855,95 L910,110 L960,92 L1010,108 L1060,88 L1110,105 L1160,95 L1210,112 L1280,100 L1280,200 Z"/>
+    <path fill="#1F2937" opacity=".25" d="M0,200 L0,150 C40,145 90,135 130,140 L155,130 L190,145 L220,128 L265,150 L300,135 L335,155 L380,140 L420,160 L465,145 L510,165 L550,148 L605,168 L650,152 L700,172 L750,155 L800,175 L855,160 L910,178 L955,165 L1010,180 L1060,165 L1110,182 L1160,170 L1210,185 L1280,178 L1280,200 Z"/>
+  </svg>
+  <h1>Jen Tuan Chau · Hero Villa
+    <small>A colonial-tropical manor on Hạ Long Bay · Caye Sereno plan × Capella Sentosa language</small>
+  </h1>
+  <div class="meta">
+    Prepared for · Công ty TNHH Jen Tuan Chau<br/>
+    Base: Transform Architecture · Caye Sereno SEA Type 2 · 06/2015<br/>
+    Reference: Capella Singapore · Sentosa Manors<br/>
+    April 2026 · Issue for Client Review
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#summary">01 · Summary</a>
+  <a href="#site">02 · Site</a>
+  <a href="#precedent">03 · Precedent</a>
+  <a href="#strategy">04 · Strategy</a>
+  <a href="#site-plan">05 · Site Plan</a>
+  <a href="#gf">06 · Ground Floor</a>
+  <a href="#l1">07 · First Floor</a>
+  <a href="#elev">08 · Elevations</a>
+  <a href="#axo">09 · Axonometric</a>
+  <a href="#mood">10 · Mood</a>
+  <a href="#compliance">11 · Compliance</a>
+</nav>
+
+<!-- 01 SUMMARY -->
+<section id="summary">
+  <h2><span class="num">01</span>Executive Summary</h2>
+  <p class="lede">One hero manor. Existing plan logic retained, L1 extended to the full ground-floor footprint, re-clad in Capella Sentosa language — deep pitched roof, white render, teak shutters, wrapping veranda — and set into the UNESCO buffer at a low ridge that reads as landscape, not skyline.</p>
+  <div class="kpi">
+    <div class="k"><div class="v">~600</div><div class="l">Total GFA · m²</div><div class="s">+38% vs Capella benchmark</div></div>
+    <div class="k"><div class="v">~300</div><div class="l">GF enclosed · m²</div><div class="s">unchanged from base</div></div>
+    <div class="k"><div class="v">~300</div><div class="l">L1 enclosed · m²</div><div class="s">full GF match — new</div></div>
+    <div class="k"><div class="v">≤9.0</div><div class="l">Ridge height · m</div><div class="s">UNESCO-buffer compliant</div></div>
+    <div class="k"><div class="v">4+1</div><div class="l">Bedrooms + study</div><div class="s">1 primary, 3 guest</div></div>
+  </div>
+</section>
+
+<!-- 02 SITE -->
+<section id="site">
+  <h2><span class="num">02</span>Site, Approvals & Constraints</h2>
+  <p class="lede">Two LURCs, a live 5th-revision investment certificate, an approved 1/500 master plan, and a seat inside the 306 km² UNESCO World Heritage buffer zone. The design is built inside those lines — it does not ask for new approvals.</p>
+  <div class="grid2">
+    <div>
+      <h3>Approvals on file</h3>
+      <table class="num">
+        <tr><th>Document</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>1/500 Master Plan — Lâm Ngọc</td><td>QĐ 1112 · 11-05-2012</td><td><span class="flag ok">Approved</span></td></tr>
+        <tr><td>1/2000 Master Plan — Cảng Ngọc Châu</td><td>QĐ 5222 · 12-12-2019</td><td><span class="flag ok">Approved</span></td></tr>
+        <tr><td>Investment Certificate (5th revision)</td><td>10-07-2025</td><td><span class="flag ok">Live</span></td></tr>
+        <tr><td>Land Use Right Certificates</td><td>Bi 462036 + Bi 462037</td><td><span class="flag ok">Clear title</span></td></tr>
+        <tr><td>Environmental commitment</td><td>§14 CKBVMT</td><td><span class="flag ok">Accepted</span></td></tr>
+        <tr><td>Building permit</td><td>§13</td><td><span class="flag ok">Exempt (per 1/500)</span></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Risk register (carried from appraisal)</h3>
+      <table class="num">
+        <tr><th>Risk</th><th>Flag</th><th>Mitigation</th></tr>
+        <tr><td>UNESCO buffer zone</td><td><span class="flag risk">🔴</span></td><td>Ridge ≤9 m · terracotta + ivory · no reflective finishes</td></tr>
+        <tr><td>Land-use fees / CCC</td><td><span class="flag warn">🟡</span></td><td>No plot change · GFA within envelope</td></tr>
+        <tr><td>JVA governance</td><td><span class="flag warn">🟡</span></td><td>Style-neutral to Jen Cap × Đào Ngọc split</td></tr>
+        <tr><td>Construction history</td><td><span class="flag warn">🟡</span></td><td>Refurbishment + L1 extension, not ground-up</td></tr>
+        <tr><td>LURC clarity</td><td><span class="flag ok">🟢</span></td><td>Preserved</td></tr>
+        <tr><td>Financial records</td><td><span class="flag ok">🟢</span></td><td>6 yrs audited FS</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PRECEDENT -->
+<section id="precedent">
+  <h2><span class="num">03</span>Precedent — Capella Sentosa Manors</h2>
+  <p class="lede">A 1880s colonial bungalow typology restored by Foster + Partners and interior-styled by Matthew Shang, Capella's manors are the clearest benchmark for a hotel-grade private residence in tropical Southeast Asia. The brief is to transfer that authority — not the surface.</p>
+  <div class="grid3">
+    <div class="card"><h4>Language</h4>
+      <p><b>Deep pitched roof</b> — copper / terracotta tone, over-sailing eaves</p>
+      <p><b>White-rendered walls</b> — lime-wash, warm ivory, non-reflective</p>
+      <p><b>Dark teak shutters</b> — louvered, on every south-facing opening</p>
+      <p><b>Wrapping verandas</b> — 2.4 m covered, GF and L1</p>
+    </div>
+    <div class="card"><h4>Plan</h4>
+      <p><b>Linear main block</b> — long axis parallel to view</p>
+      <p><b>Central entry axis</b> — foyer opens to living and dining</p>
+      <p><b>Symmetrical bedroom wings</b> — on L1, over GF outline</p>
+      <p><b>Detached pavilion</b> — sala / outdoor room in garden</p>
+    </div>
+    <div class="card"><h4>Palette</h4>
+      <p><b>Exterior</b> — ivory render, terracotta roof, basalt base, teak joinery</p>
+      <p><b>Interior</b> — warm ivory plaster, herringbone teak, honed Carrara, aged brass</p>
+      <p><b>Textile</b> — raffia, linen in oat, velvet in ink, vintage rust rugs</p>
+      <p><b>Landscape</b> — frangipani, heliconia, palms, mature trees</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 STRATEGY -->
+<section id="strategy">
+  <h2><span class="num">04</span>Design Strategy — Five Moves</h2>
+  <p class="lede">Retain the plan, extend the floor, pitch the roof, re-clad the skin, re-interior the palette. Each move is surgical and independently reversible.</p>
+  <div class="grid2">
+    <div>
+      <div class="pillar"><div class="num">1</div><div class="body">
+        <h4>Extend L1 to the full GF footprint</h4>
+        <p>Convert the ~148 m² open roof terrace of the Caye Sereno scheme into conditioned floor. Adds 3 guest suites + upper lounge without growing the plot.</p>
+      </div></div>
+      <div class="pillar"><div class="num">2</div><div class="body">
+        <h4>Pitch the roof</h4>
+        <p>Replace the flat roof at +6.97 with a 25° hipped clay-tile roof rising to a central ridge at ~+9.00. Dominant image at bay-view scale.</p>
+      </div></div>
+      <div class="pillar"><div class="num">3</div><div class="body">
+        <h4>Re-clad in colonial white</h4>
+        <p>Lime-washed render above the existing basalt base; FSC teak shutters replace SDET-075 bamboo; deep 300 mm reveals for plasticity.</p>
+      </div></div>
+    </div>
+    <div>
+      <div class="pillar"><div class="num">4</div><div class="body">
+        <h4>Wrap the bay elevation in veranda</h4>
+        <p>2.4 m cantilevered veranda along the south and west on both floors. Shades glazing, protects render, stages every room to the bay.</p>
+      </div></div>
+      <div class="pillar"><div class="num">5</div><div class="body">
+        <h4>Re-interior in ivory / teak / brass</h4>
+        <p>Venetian-plaster walls, herringbone teak floors, raffia ceilings, aged-brass hardware, linen and raffia textiles. Capella palette, Jen Tuan Chau craft.</p>
+      </div></div>
+      <div class="pillar"><div class="num">+</div><div class="body">
+        <h4>Preserve every legal input</h4>
+        <p>No plot change. No rezoning. No new building permit. Setbacks per 1/500. Height below 9 m for UNESCO buffer. Envelope stays approved.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SITE PLAN -->
+<section id="site-plan">
+  <h2><span class="num">05</span>Site Plan</h2>
+  <p class="lede">Looking from the north. Service and arrival from the north edge; villa set along the bay; pool, sala pavilion and bay terrace on the south.</p>
+  <svg class="dwg" viewBox="0 0 1200 720">
+    <!-- grid -->
+    <g class="grid">
+      <g id="vg"><line x1="0" y1="0" x2="0" y2="720"/></g>
+      <g>
+        <line x1="100" y1="0" x2="100" y2="720"/>
+        <line x1="200" y1="0" x2="200" y2="720"/>
+        <line x1="300" y1="0" x2="300" y2="720"/>
+        <line x1="400" y1="0" x2="400" y2="720"/>
+        <line x1="500" y1="0" x2="500" y2="720"/>
+        <line x1="600" y1="0" x2="600" y2="720"/>
+        <line x1="700" y1="0" x2="700" y2="720"/>
+        <line x1="800" y1="0" x2="800" y2="720"/>
+        <line x1="900" y1="0" x2="900" y2="720"/>
+        <line x1="1000" y1="0" x2="1000" y2="720"/>
+        <line x1="1100" y1="0" x2="1100" y2="720"/>
+        <line x1="0" y1="100" x2="1200" y2="100"/>
+        <line x1="0" y1="200" x2="1200" y2="200"/>
+        <line x1="0" y1="300" x2="1200" y2="300"/>
+        <line x1="0" y1="400" x2="1200" y2="400"/>
+        <line x1="0" y1="500" x2="1200" y2="500"/>
+        <line x1="0" y1="600" x2="1200" y2="600"/>
+      </g>
+    </g>
+
+    <!-- plot outline -->
+    <rect x="80" y="80" width="1040" height="560" fill="#F5F1EA" stroke="#1F2937" stroke-width="1.4"/>
+
+    <!-- motor court / arrival (north) -->
+    <rect x="200" y="110" width="800" height="90" fill="#D6D3D1" stroke="#78716C" stroke-width=".6"/>
+    <text x="600" y="158" class="room-label">MOTOR COURT</text>
+    <text x="600" y="172" class="room-sub">sawn basalt setts with grass joints</text>
+
+    <!-- frangipani pair -->
+    <circle cx="320" cy="215" r="22" class="fill-planting"/>
+    <circle cx="880" cy="215" r="22" class="fill-planting"/>
+    <text x="320" y="252" class="tag" text-anchor="middle">Frangipani</text>
+    <text x="880" y="252" class="tag" text-anchor="middle">Frangipani</text>
+
+    <!-- villa footprint (ground floor) -->
+    <rect x="200" y="260" width="800" height="180" class="fill-base"/>
+    <!-- porte-cochère recess -->
+    <rect x="560" y="250" width="80" height="20" fill="#E7E5E4" stroke="#1F2937" stroke-width=".8"/>
+    <text x="600" y="264" class="tag" text-anchor="middle">PORTE-COCHÈRE</text>
+
+    <!-- dining wing projection (east) -->
+    <rect x="920" y="260" width="80" height="200" class="fill-base"/>
+
+    <!-- veranda (south + west) -->
+    <rect x="170" y="440" width="840" height="50" fill="#E6D5B8" stroke="#5A3A1B" stroke-width=".6"/>
+    <text x="585" y="470" class="tag" text-anchor="middle">2.4 m COVERED VERANDA — SOUTH</text>
+
+    <!-- pool deck -->
+    <rect x="260" y="500" width="540" height="80" class="fill-deck"/>
+    <text x="530" y="546" class="tag" text-anchor="middle">TEAK POOL DECK</text>
+
+    <!-- pool -->
+    <rect x="300" y="515" width="460" height="50" class="fill-water" rx="4"/>
+    <text x="530" y="545" class="room-label" fill="#1F2937">INFINITY POOL · 18 × 5 m</text>
+
+    <!-- sala pavilion -->
+    <polygon points="855,500 930,500 940,515 845,515" fill="#C87350" stroke="#1F2937" stroke-width=".8"/>
+    <rect x="850" y="515" width="80" height="55" fill="#F3E5CC" stroke="#1F2937" stroke-width=".6"/>
+    <text x="890" y="545" class="room-label">SALA</text>
+    <text x="890" y="558" class="room-sub">3.6 × 3.6 m</text>
+
+    <!-- south lawn / planting -->
+    <rect x="100" y="595" width="1000" height="40" class="fill-lawn"/>
+    <g>
+      <circle cx="150" cy="615" r="12" class="fill-planting"/>
+      <circle cx="210" cy="615" r="10" class="fill-planting"/>
+      <circle cx="270" cy="615" r="14" class="fill-planting"/>
+      <circle cx="930" cy="615" r="12" class="fill-planting"/>
+      <circle cx="990" cy="615" r="14" class="fill-planting"/>
+      <circle cx="1050" cy="615" r="11" class="fill-planting"/>
+    </g>
+    <text x="600" y="618" class="tag" text-anchor="middle">heliconia · bird-of-paradise · tropical grasses</text>
+
+    <!-- service yard (north) -->
+    <rect x="100" y="200" width="100" height="60" fill="#E7E5E4" stroke="#78716C" stroke-width=".6"/>
+    <text x="150" y="232" class="tag" text-anchor="middle">SERVICE</text>
+    <text x="150" y="244" class="tag" text-anchor="middle">YARD</text>
+
+    <!-- gardener's store -->
+    <rect x="1000" y="200" width="100" height="60" fill="#E7E5E4" stroke="#78716C" stroke-width=".6"/>
+    <text x="1050" y="232" class="tag" text-anchor="middle">STORE</text>
+
+    <!-- compass -->
+    <g transform="translate(1060,100)">
+      <circle r="24" fill="#fff" stroke="#1F2937" stroke-width="1"/>
+      <polygon points="0,-20 4,0 0,-6 -4,0" fill="#B45309"/>
+      <polygon points="0,20 -4,0 0,6 4,0" fill="#1F2937"/>
+      <text x="0" y="-28" text-anchor="middle" class="dim">N</text>
+    </g>
+
+    <!-- bay arrow -->
+    <g transform="translate(100,680)">
+      <line x1="0" y1="0" x2="1000" y2="0" class="dimline"/>
+      <polygon points="1000,0 992,-4 992,4" fill="#B45309"/>
+      <text x="500" y="-6" text-anchor="middle" class="dim">↓ TO HẠ LONG BAY — 12 m to water edge</text>
+    </g>
+
+    <!-- dimensions -->
+    <text x="600" y="30" text-anchor="middle" class="title">SITE PLAN · 1:400</text>
+    <text x="600" y="50" text-anchor="middle" class="tag">Plot ~28.0 × 30.0 m ≈ 840 m² · North up · All dimensions provisional</text>
+  </svg>
+  <div class="legend">
+    <span><i style="background:#F5F1EA;border-color:#1F2937"></i> Villa GF footprint</span>
+    <span><i style="background:#E6D5B8;border-color:#5A3A1B"></i> Covered veranda</span>
+    <span><i style="background:#C8A98A;border-color:#5A3A1B"></i> Teak deck</span>
+    <span><i style="background:#BCD7E2;border-color:#3C6173"></i> Pool</span>
+    <span><i style="background:#CFD9A3;border-color:#697B3B"></i> Lawn / planting</span>
+    <span><i style="background:#365314"></i> Tree / specimen planting</span>
+  </div>
+</section>
+
+<!-- 06 GF PLAN -->
+<section id="gf">
+  <h2><span class="num">06</span>Ground Floor Plan</h2>
+  <p class="lede">~300 m² enclosed. Linear main block, service spine at north, bay-facing rooms at south. Axial entry on gridline C.</p>
+  <svg class="dwg" viewBox="0 0 1200 540">
+    <g class="grid">
+      <line x1="0" y1="100" x2="1200" y2="100"/>
+      <line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/>
+      <line x1="0" y1="400" x2="1200" y2="400"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/>
+    </g>
+
+    <!-- grid -->
+    <g>
+      <line x1="120" y1="100" x2="120" y2="440" class="dimline"/>
+      <line x1="270" y1="100" x2="270" y2="440" class="dimline"/>
+      <line x1="450" y1="100" x2="450" y2="440" class="dimline"/>
+      <line x1="640" y1="100" x2="640" y2="440" class="dimline"/>
+      <line x1="880" y1="100" x2="880" y2="440" class="dimline"/>
+      <line x1="1080" y1="100" x2="1080" y2="440" class="dimline"/>
+      <text x="120" y="95" text-anchor="middle" class="grid-label">A</text>
+      <text x="270" y="95" text-anchor="middle" class="grid-label">B</text>
+      <text x="450" y="95" text-anchor="middle" class="grid-label">C</text>
+      <text x="640" y="95" text-anchor="middle" class="grid-label">D</text>
+      <text x="880" y="95" text-anchor="middle" class="grid-label">E</text>
+      <text x="1080" y="95" text-anchor="middle" class="grid-label">F</text>
+    </g>
+    <!-- dim strip -->
+    <g>
+      <text x="195" y="80" text-anchor="middle" class="dim">3850</text>
+      <text x="360" y="80" text-anchor="middle" class="dim">5500</text>
+      <text x="545" y="80" text-anchor="middle" class="dim">5500</text>
+      <text x="760" y="80" text-anchor="middle" class="dim">7150</text>
+      <text x="980" y="80" text-anchor="middle" class="dim">6050</text>
+    </g>
+
+    <!-- main outline -->
+    <rect x="120" y="130" width="960" height="310" fill="#F5F1EA" stroke="#1F2937" stroke-width="1.8"/>
+
+    <!-- service spine (north) -->
+    <rect x="120" y="130" width="520" height="60" fill="#EEEAE0" stroke="#1F2937" stroke-width=".7"/>
+    <text x="220" y="162" class="room-label">MAID</text>
+    <text x="220" y="175" class="room-sub">12 m²</text>
+    <line x1="300" y1="130" x2="300" y2="190" stroke="#1F2937" stroke-width=".7"/>
+    <text x="370" y="162" class="room-label">UTILITY</text>
+    <text x="370" y="175" class="room-sub">8 m²</text>
+    <line x1="450" y1="130" x2="450" y2="190" stroke="#1F2937" stroke-width=".7"/>
+    <text x="530" y="162" class="room-label">SERVICE KITCHEN</text>
+    <text x="530" y="175" class="room-sub">+ pantry 22 m²</text>
+
+    <!-- porte-cochère recess above foyer -->
+    <rect x="430" y="115" width="80" height="25" fill="#FAF7F2" stroke="#1F2937" stroke-width=".7"/>
+    <text x="470" y="130" class="tag" text-anchor="middle">PORTE-COCHÈRE</text>
+
+    <!-- foyer -->
+    <rect x="400" y="190" width="140" height="110" fill="#FAF7F2" stroke="#1F2937" stroke-width=".7"/>
+    <text x="470" y="235" class="room-label">FOYER</text>
+    <text x="470" y="250" class="room-sub">double-height</text>
+    <text x="470" y="262" class="room-sub">coffered teak ceiling</text>
+    <text x="470" y="284" class="room-sub">18 m²</text>
+
+    <!-- formal living -->
+    <rect x="120" y="190" width="280" height="210" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="260" y="270" class="room-label">FORMAL LIVING</text>
+    <text x="260" y="285" class="room-sub">bay view, 4× sliding teak-glass doors</text>
+    <text x="260" y="298" class="room-sub">raffia ceiling, 3.4 m</text>
+    <text x="260" y="320" class="room-sub">66 m²</text>
+
+    <!-- primary suite -->
+    <rect x="120" y="400" width="280" height="40" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="260" y="423" class="room-sub">PRIMARY TERRACE (covered)</text>
+
+    <!-- dining -->
+    <rect x="540" y="190" width="220" height="140" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="650" y="250" class="room-label">FORMAL DINING</text>
+    <text x="650" y="265" class="room-sub">10-seat teak, bay view</text>
+    <text x="650" y="278" class="room-sub">teak wainscoting</text>
+    <text x="650" y="300" class="room-sub">40 m²</text>
+
+    <!-- family living + open kitchen -->
+    <rect x="760" y="190" width="320" height="140" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="920" y="240" class="room-label">FAMILY LIVING + OPEN KITCHEN</text>
+    <text x="920" y="255" class="room-sub">Carrara island · brass hardware</text>
+    <text x="920" y="268" class="room-sub">breakfast terrace to east</text>
+    <text x="920" y="290" class="room-sub">52 m²</text>
+
+    <!-- study -->
+    <rect x="540" y="330" width="220" height="110" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="650" y="378" class="room-label">STUDY / LIBRARY</text>
+    <text x="650" y="393" class="room-sub">half-panel teak</text>
+    <text x="650" y="406" class="room-sub">20 m²</text>
+
+    <!-- powder -->
+    <rect x="760" y="330" width="100" height="50" fill="#F3E8D8" stroke="#1F2937" stroke-width=".7"/>
+    <text x="810" y="358" class="room-sub">POWDER</text>
+    <text x="810" y="370" class="room-sub">4 m²</text>
+
+    <!-- primary ensuite + dressing -->
+    <rect x="860" y="330" width="220" height="110" fill="#F3E8D8" stroke="#1F2937" stroke-width=".7"/>
+    <text x="970" y="370" class="room-label">PRIMARY ENSUITE + DRESSING</text>
+    <text x="970" y="385" class="room-sub">honed Carrara · freestanding brass tub</text>
+    <text x="970" y="405" class="room-sub">30 m²</text>
+
+    <!-- primary bedroom (moved west) -->
+    <rect x="120" y="130" width="0" height="0"/> <!-- filler -->
+    <rect x="120" y="300" width="280" height="100" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="260" y="342" class="room-label">PRIMARY SUITE</text>
+    <text x="260" y="357" class="room-sub">teak four-poster, bay view</text>
+    <text x="260" y="370" class="room-sub">raffia headboard wall</text>
+    <text x="260" y="384" class="room-sub">36 m²</text>
+
+    <!-- south veranda covered -->
+    <rect x="80" y="440" width="1020" height="40" fill="#E6D5B8" stroke="#5A3A1B" stroke-width=".7"/>
+    <text x="590" y="465" class="tag" text-anchor="middle">2.4 m COVERED VERANDA — SOUTH (bay) · teak deck · tongue-groove teak ceiling</text>
+
+    <!-- vertical circulation -->
+    <rect x="400" y="300" width="50" height="100" fill="#EEEAE0" stroke="#1F2937" stroke-width=".7"/>
+    <text x="425" y="345" class="room-sub" text-anchor="middle">STAIR</text>
+    <text x="425" y="358" class="room-sub" text-anchor="middle">to L1</text>
+
+    <!-- axis arrow -->
+    <line x1="470" y1="115" x2="470" y2="440" stroke="#B45309" stroke-width=".6" stroke-dasharray="3 3"/>
+    <text x="470" y="108" text-anchor="middle" class="dim">central axis (gridline C)</text>
+
+    <!-- compass -->
+    <g transform="translate(1130,150)">
+      <circle r="22" fill="#fff" stroke="#1F2937"/>
+      <polygon points="0,-18 4,0 0,-6 -4,0" fill="#B45309"/>
+      <text x="0" y="-26" text-anchor="middle" class="dim">N</text>
+    </g>
+
+    <text x="600" y="30" text-anchor="middle" class="title">GROUND FLOOR PLAN · 1:200</text>
+    <text x="600" y="50" text-anchor="middle" class="tag">GF FFL +2.930 m · ~300 m² enclosed + ~120 m² covered veranda</text>
+  </svg>
+</section>
+
+<!-- 07 L1 PLAN -->
+<section id="l1">
+  <h2><span class="num">07</span>First Floor Plan — The Extension</h2>
+  <p class="lede">L1 extended to the full ground-floor outline — ~300 m² enclosed, +148 m² versus the Caye Sereno baseline. Three guest suites on the south-facing bay wall, twin garden suite on the north, gallery atrium and guest lounge at the axis.</p>
+  <svg class="dwg" viewBox="0 0 1200 540">
+    <g class="grid">
+      <line x1="0" y1="100" x2="1200" y2="100"/>
+      <line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/>
+      <line x1="0" y1="400" x2="1200" y2="400"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/>
+    </g>
+    <g>
+      <text x="120" y="95" text-anchor="middle" class="grid-label">A</text>
+      <text x="270" y="95" text-anchor="middle" class="grid-label">B</text>
+      <text x="450" y="95" text-anchor="middle" class="grid-label">C</text>
+      <text x="640" y="95" text-anchor="middle" class="grid-label">D</text>
+      <text x="880" y="95" text-anchor="middle" class="grid-label">E</text>
+      <text x="1080" y="95" text-anchor="middle" class="grid-label">F</text>
+    </g>
+
+    <!-- outline — matches GF -->
+    <rect x="120" y="130" width="960" height="310" fill="#FCE9D2" stroke="#B45309" stroke-width="1.8"/>
+    <text x="1070" y="150" text-anchor="end" class="dim">L1 OUTLINE = GF OUTLINE (new)</text>
+
+    <!-- former L1 (existing) overlay -->
+    <rect x="120" y="130" width="520" height="310" fill="none" stroke="#1F2937" stroke-width="1" stroke-dasharray="6 4"/>
+    <text x="200" y="435" class="tag">existing L1 outline (Caye Sereno)</text>
+
+    <!-- central corridor -->
+    <rect x="120" y="265" width="960" height="40" fill="#FAF7F2" stroke="#1F2937" stroke-width=".7"/>
+    <text x="550" y="290" class="tag" text-anchor="middle">AXIAL CORRIDOR — gridline C · ivory plaster · teak herringbone</text>
+
+    <!-- guest suite A (south, bay, west) -->
+    <rect x="120" y="305" width="260" height="135" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="250" y="360" class="room-label">GUEST SUITE A</text>
+    <text x="250" y="375" class="room-sub">king, bay view · shutter-framed</text>
+    <text x="250" y="388" class="room-sub">white oak floor · 32 m²</text>
+
+    <!-- guest suite B (south, bay, centre) -->
+    <rect x="380" y="305" width="260" height="135" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="510" y="360" class="room-label">GUEST SUITE B</text>
+    <text x="510" y="375" class="room-sub">king, bay view</text>
+    <text x="510" y="388" class="room-sub">32 m²</text>
+
+    <!-- reading atrium / double-height void over foyer -->
+    <rect x="400" y="180" width="140" height="85" fill="#EFE2C1" stroke="#B45309" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="470" y="218" class="room-label" fill="#B45309">ATRIUM VOID</text>
+    <text x="470" y="232" class="room-sub">double-height over foyer</text>
+    <text x="470" y="244" class="room-sub">roof lantern above</text>
+
+    <!-- guest suite C (north, twin, garden) -->
+    <rect x="120" y="130" width="280" height="135" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="260" y="185" class="room-label">GUEST SUITE C</text>
+    <text x="260" y="200" class="room-sub">twin, garden view</text>
+    <text x="260" y="213" class="room-sub">28 m²</text>
+
+    <!-- guest lounge / library (east) -->
+    <rect x="640" y="305" width="440" height="135" fill="#FFFFFF" stroke="#1F2937" stroke-width=".7"/>
+    <text x="860" y="360" class="room-label">GUEST LOUNGE / GALLERY</text>
+    <text x="860" y="375" class="room-sub">half-panel teak · reading library</text>
+    <text x="860" y="388" class="room-sub">58 m²</text>
+
+    <!-- roof terrace area (north-east) -->
+    <rect x="540" y="130" width="540" height="135" fill="#F3E8D8" stroke="#1F2937" stroke-width=".7"/>
+    <text x="810" y="185" class="room-label">UPPER LOUNGE / READING NOOK</text>
+    <text x="810" y="200" class="room-sub">over GF family living + dining</text>
+    <text x="810" y="213" class="room-sub">new L1 extension (+148 m²)</text>
+
+    <!-- stair -->
+    <rect x="400" y="265" width="50" height="40" fill="#EEEAE0" stroke="#1F2937" stroke-width=".7"/>
+    <text x="425" y="290" class="room-sub" text-anchor="middle">STAIR</text>
+
+    <!-- south upper veranda -->
+    <rect x="80" y="440" width="1020" height="40" fill="#E6D5B8" stroke="#5A3A1B" stroke-width=".7"/>
+    <text x="590" y="465" class="tag" text-anchor="middle">2.4 m UPPER VERANDA — SOUTH (bay) · teak handrail · louvered shutters</text>
+
+    <!-- compass -->
+    <g transform="translate(1130,150)">
+      <circle r="22" fill="#fff" stroke="#1F2937"/>
+      <polygon points="0,-18 4,0 0,-6 -4,0" fill="#B45309"/>
+      <text x="0" y="-26" text-anchor="middle" class="dim">N</text>
+    </g>
+
+    <text x="600" y="30" text-anchor="middle" class="title">FIRST FLOOR PLAN · 1:200</text>
+    <text x="600" y="50" text-anchor="middle" class="tag">L1 FFL +6.480 m · ~300 m² enclosed (full match to GF) + ~90 m² upper veranda</text>
+  </svg>
+  <div class="legend">
+    <span><i style="background:#FCE9D2;border-color:#B45309"></i> Proposed L1 outline (new full match)</span>
+    <span><i style="background:#FFFFFF;border-color:#1F2937"></i> Enclosed room</span>
+    <span><i style="background:#E6D5B8;border-color:#5A3A1B"></i> Covered veranda</span>
+    <span><i style="background:#EFE2C1;border-color:#B45309"></i> Double-height void</span>
+    <span><i style="border-color:#1F2937;background:transparent"></i> Existing Caye Sereno L1 outline (dashed)</span>
+  </div>
+</section>
+
+<!-- 08 ELEVATIONS -->
+<section id="elev">
+  <h2><span class="num">08</span>Elevations</h2>
+  <p class="lede">A long, low, two-storey colonial manor. Pitched clay-tile roof, white-rendered walls, teak shutters, wraparound veranda. Ridge at ~9 m, eave at ~6.5 m, FFL at +2.93 m.</p>
+
+  <h3>South Elevation — the bay face</h3>
+  <svg class="dwg" viewBox="0 0 1200 360">
+    <g class="grid">
+      <line x1="0" y1="300" x2="1200" y2="300" stroke="#9CA3AF" stroke-width=".8"/>
+    </g>
+    <!-- sky + bay -->
+    <rect x="0" y="0" width="1200" height="120" fill="#C7DDE6"/>
+    <rect x="0" y="120" width="1200" height="70" fill="#94B9C9"/>
+    <polygon points="0,170 80,155 160,175 230,150 300,170 380,155 450,175 520,150 580,172 640,155 710,175 770,152 840,170 910,155 980,172 1050,155 1120,170 1200,160 1200,190 0,190" fill="#5A8699" opacity=".7"/>
+
+    <!-- base (STW2 stone base +0 to +3.18) -->
+    <rect x="100" y="260" width="1000" height="40" fill="#44403C" stroke="#1F2937" stroke-width=".8"/>
+    <!-- rendered wall upper level (FFL L1 +6.48 to eave +6.5) -->
+    <rect x="100" y="160" width="1000" height="100" fill="#EDE4D3" stroke="#1F2937" stroke-width=".8"/>
+    <!-- l1 upper veranda overhang -->
+    <rect x="90" y="195" width="1020" height="8" fill="#5A3A1B"/>
+    <!-- roof pitched -->
+    <polygon points="100,160 600,80 1100,160" fill="#C87350" stroke="#1F2937" stroke-width="1"/>
+    <polygon points="100,160 600,80 1100,160 1100,168 600,88 100,168" fill="#8C5830" opacity=".6"/>
+
+    <!-- shutter bays on L1 -->
+    <g fill="#2E1B0F" stroke="#1F2937" stroke-width=".4">
+      <rect x="170" y="175" width="50" height="60"/>
+      <rect x="360" y="175" width="50" height="60"/>
+      <rect x="575" y="175" width="50" height="60"/>
+      <rect x="790" y="175" width="50" height="60"/>
+      <rect x="980" y="175" width="50" height="60"/>
+    </g>
+    <!-- shutter bays on GF -->
+    <g fill="#2E1B0F" stroke="#1F2937" stroke-width=".4">
+      <rect x="170" y="210" width="50" height="48"/>
+      <rect x="360" y="210" width="50" height="48"/>
+      <rect x="575" y="210" width="50" height="48"/>
+      <rect x="790" y="210" width="50" height="48"/>
+      <rect x="980" y="210" width="50" height="48"/>
+    </g>
+    <!-- veranda columns -->
+    <g stroke="#1F2937" stroke-width="1.1" fill="none">
+      <line x1="140" y1="200" x2="140" y2="300"/>
+      <line x1="325" y1="200" x2="325" y2="300"/>
+      <line x1="540" y1="200" x2="540" y2="300"/>
+      <line x1="755" y1="200" x2="755" y2="300"/>
+      <line x1="945" y1="200" x2="945" y2="300"/>
+      <line x1="1075" y1="200" x2="1075" y2="300"/>
+    </g>
+
+    <!-- level lines -->
+    <g stroke="#B45309" stroke-width=".5" stroke-dasharray="4 3">
+      <line x1="50" y1="300" x2="1150" y2="300"/>
+      <line x1="50" y1="160" x2="1150" y2="160"/>
+      <line x1="50" y1="80" x2="1150" y2="80"/>
+    </g>
+    <g class="dim">
+      <text x="1155" y="303">FFL +2.93</text>
+      <text x="1155" y="163">EAVE +6.50</text>
+      <text x="1155" y="83">RIDGE +9.00</text>
+    </g>
+    <text x="600" y="30" text-anchor="middle" class="title">SOUTH ELEVATION · 1:250</text>
+    <text x="600" y="48" text-anchor="middle" class="tag">bay-facing hero elevation · clay-tile roof · teak louvered shutters · rendered wall · stone base</text>
+  </svg>
+
+  <div class="grid2" style="margin-top:32px">
+    <div>
+      <h3>East Elevation — dining wing</h3>
+      <svg class="dwg" viewBox="0 0 600 300">
+        <rect x="0" y="0" width="600" height="120" fill="#C7DDE6"/>
+        <rect x="0" y="120" width="600" height="80" fill="#94B9C9" opacity=".8"/>
+        <!-- dining wing gable -->
+        <rect x="80" y="220" width="440" height="40" fill="#44403C" stroke="#1F2937" stroke-width=".7"/>
+        <rect x="80" y="140" width="440" height="80" fill="#EDE4D3" stroke="#1F2937" stroke-width=".7"/>
+        <polygon points="80,140 300,70 520,140" fill="#C87350" stroke="#1F2937" stroke-width="1"/>
+        <!-- jack arch window -->
+        <path d="M 230,160 A 70 50 0 0 1 370 160 L 370 210 L 230 210 Z" fill="#2E1B0F" stroke="#1F2937"/>
+        <!-- sala pavilion in foreground -->
+        <g transform="translate(80,240)">
+          <polygon points="0,0 60,-35 120,0" fill="#C87350" stroke="#1F2937" stroke-width=".7"/>
+          <rect x="10" y="0" width="100" height="20" fill="#F3E5CC" stroke="#1F2937" stroke-width=".7"/>
+        </g>
+        <g stroke="#B45309" stroke-width=".5" stroke-dasharray="4 3">
+          <line x1="30" y1="260" x2="570" y2="260"/>
+        </g>
+        <text x="300" y="28" text-anchor="middle" class="title">EAST ELEVATION</text>
+      </svg>
+    </div>
+    <div>
+      <h3>North Elevation — arrival</h3>
+      <svg class="dwg" viewBox="0 0 600 300">
+        <rect x="0" y="0" width="600" height="200" fill="#DDE3E8"/>
+        <rect x="80" y="220" width="440" height="40" fill="#44403C" stroke="#1F2937"/>
+        <rect x="80" y="140" width="440" height="80" fill="#EDE4D3" stroke="#1F2937"/>
+        <polygon points="80,140 300,70 520,140" fill="#C87350" stroke="#1F2937"/>
+        <!-- porte-cochère -->
+        <rect x="240" y="185" width="120" height="55" fill="#D6D3D1" stroke="#1F2937"/>
+        <rect x="275" y="205" width="50" height="55" fill="#2E1B0F"/>
+        <!-- clerestory lantern -->
+        <rect x="285" y="80" width="30" height="25" fill="#EFE2C1" stroke="#1F2937"/>
+        <text x="300" y="28" text-anchor="middle" class="title">NORTH ELEVATION</text>
+        <text x="300" y="165" text-anchor="middle" class="tag">porte-cochère · teak doors · roof lantern over foyer</text>
+      </svg>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px">Section A–A (transverse, cut through gridline D)</h3>
+  <svg class="dwg" viewBox="0 0 1200 360">
+    <!-- sky -->
+    <rect x="0" y="0" width="1200" height="110" fill="#C7DDE6"/>
+    <rect x="0" y="110" width="1200" height="80" fill="#94B9C9" opacity=".6"/>
+    <!-- ground -->
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#44403C" stroke-width="1.2"/>
+    <g stroke="#B45309" stroke-width=".5" stroke-dasharray="4 3">
+      <line x1="50" y1="300" x2="1150" y2="300"/>
+      <line x1="50" y1="230" x2="1150" y2="230"/>
+      <line x1="50" y1="160" x2="1150" y2="160"/>
+      <line x1="50" y1="80" x2="1150" y2="80"/>
+    </g>
+    <g class="dim">
+      <text x="1155" y="303">FFL GF +2.93</text>
+      <text x="1155" y="233">FFL L1 +6.48</text>
+      <text x="1155" y="163">EAVE +9.00</text>
+      <text x="1155" y="83">RIDGE +12.30</text>
+    </g>
+    <!-- base -->
+    <rect x="200" y="260" width="800" height="40" fill="#44403C"/>
+    <!-- GF floor slab -->
+    <rect x="200" y="260" width="800" height="6" fill="#1F2937"/>
+    <!-- L1 floor slab -->
+    <rect x="200" y="226" width="800" height="6" fill="#1F2937"/>
+    <!-- walls -->
+    <rect x="200" y="156" width="800" height="140" fill="#EDE4D3" opacity=".4" stroke="#1F2937" stroke-width=".7"/>
+    <!-- pitched roof -->
+    <polygon points="200,156 600,80 1000,156" fill="#C87350" stroke="#1F2937" stroke-width=".9"/>
+    <!-- veranda (south) overhang -->
+    <rect x="100" y="226" width="100" height="6" fill="#1F2937"/>
+    <rect x="100" y="260" width="100" height="6" fill="#1F2937"/>
+    <rect x="102" y="232" width="96" height="28" fill="#F3E5CC" opacity=".5"/>
+    <rect x="102" y="266" width="96" height="28" fill="#F3E5CC" opacity=".5"/>
+    <text x="145" y="254" class="room-sub" text-anchor="middle">L1 veranda</text>
+    <text x="145" y="288" class="room-sub" text-anchor="middle">GF veranda</text>
+    <!-- rooms labels -->
+    <text x="260" y="260" class="room-label">GF · Formal living</text>
+    <text x="260" y="228" class="room-label">L1 · Guest Suite</text>
+    <text x="580" y="260" class="room-label">Corridor</text>
+    <text x="780" y="260" class="room-label">Service spine</text>
+    <text x="780" y="228" class="room-label">Upper lounge</text>
+    <!-- direction -->
+    <text x="100" y="318" class="tag">↓ BAY (SOUTH)</text>
+    <text x="1100" y="318" text-anchor="end" class="tag">SERVICE (NORTH) ↑</text>
+    <text x="600" y="30" text-anchor="middle" class="title">SECTION A–A · 1:200</text>
+    <text x="600" y="48" text-anchor="middle" class="tag">3.55 m GF floor-to-floor · 3.20 m L1 · 25° pitched roof · ridge concealed from pool by upper veranda eave</text>
+  </svg>
+</section>
+
+<!-- 09 AXONOMETRIC -->
+<section id="axo">
+  <h2><span class="num">09</span>Axonometric — the whole composition</h2>
+  <p class="lede">Linear manor, wrapping veranda, hipped roof, pool and sala on the bay side, service yard on the north.</p>
+  <svg class="dwg" viewBox="0 0 1200 620">
+    <!-- ground -->
+    <polygon points="100,450 1150,450 1050,570 50,570" fill="#CFD9A3" opacity=".6"/>
+    <polygon points="100,450 1150,450 1050,570 50,570" fill="none" stroke="#697B3B" stroke-width=".6"/>
+
+    <!-- pool -->
+    <polygon points="300,500 800,500 770,550 280,550" fill="#BCD7E2" stroke="#3C6173" stroke-width=".8"/>
+    <text x="540" y="530" text-anchor="middle" class="room-sub" fill="#1F2937">infinity pool</text>
+
+    <!-- deck -->
+    <polygon points="240,480 850,480 810,560 220,560" fill="#C8A98A" opacity=".55" stroke="#5A3A1B" stroke-width=".4"/>
+
+    <!-- villa base (GF) -->
+    <g>
+      <polygon points="180,380 1020,380 980,440 140,440" fill="#F5F1EA" stroke="#1F2937" stroke-width="1"/>
+      <!-- sides -->
+      <polygon points="140,440 140,480 980,480 980,440" fill="#EEE4D0" stroke="#1F2937" stroke-width=".8"/>
+      <polygon points="980,440 1020,380 1020,420 980,480" fill="#D9CDB6" stroke="#1F2937" stroke-width=".8"/>
+      <!-- base stone -->
+      <polygon points="140,465 140,485 980,485 980,465" fill="#44403C" opacity=".85"/>
+    </g>
+
+    <!-- L1 volume (new full match) -->
+    <g>
+      <polygon points="180,300 1020,300 980,360 140,360" fill="#FCE9D2" stroke="#B45309" stroke-width="1"/>
+      <polygon points="140,360 140,420 980,420 980,360" fill="#F6DCB8" stroke="#B45309" stroke-width=".8"/>
+      <polygon points="980,360 1020,300 1020,340 980,400" fill="#EFD0A3" stroke="#B45309" stroke-width=".8"/>
+
+      <!-- shutters L1 -->
+      <g fill="#2E1B0F" stroke="#1F2937" stroke-width=".4">
+        <rect x="200" y="370" width="35" height="45"/>
+        <rect x="330" y="370" width="35" height="45"/>
+        <rect x="470" y="370" width="35" height="45"/>
+        <rect x="620" y="370" width="35" height="45"/>
+        <rect x="770" y="370" width="35" height="45"/>
+        <rect x="900" y="370" width="35" height="45"/>
+      </g>
+    </g>
+
+    <!-- hipped roof -->
+    <g>
+      <polygon points="180,300 1020,300 950,220 250,220" fill="#C87350" stroke="#1F2937" stroke-width="1.1"/>
+      <polygon points="180,300 250,220 220,280 140,340" fill="#8C5830" stroke="#1F2937" stroke-width=".8"/>
+      <polygon points="1020,300 950,220 980,280 1060,340" fill="#A05F35" stroke="#1F2937" stroke-width=".8"/>
+      <!-- copper ridge -->
+      <line x1="250" y1="220" x2="950" y2="220" stroke="#6F5828" stroke-width="2"/>
+      <!-- roof lantern -->
+      <rect x="580" y="200" width="40" height="20" fill="#EFE2C1" stroke="#1F2937"/>
+      <polygon points="580,200 600,186 620,200" fill="#C87350" stroke="#1F2937"/>
+    </g>
+
+    <!-- veranda columns -->
+    <g stroke="#1F2937" stroke-width=".9">
+      <line x1="200" y1="480" x2="200" y2="565"/>
+      <line x1="350" y1="480" x2="350" y2="565"/>
+      <line x1="500" y1="480" x2="500" y2="565"/>
+      <line x1="650" y1="480" x2="650" y2="565"/>
+      <line x1="800" y1="480" x2="800" y2="565"/>
+      <line x1="950" y1="480" x2="950" y2="565"/>
+    </g>
+
+    <!-- sala pavilion (east lawn) -->
+    <g transform="translate(1050,510)">
+      <polygon points="0,0 60,-50 120,0" fill="#C87350" stroke="#1F2937"/>
+      <polygon points="0,0 60,50 120,0" fill="#F3E5CC" stroke="#1F2937"/>
+    </g>
+
+    <!-- motor court (north-back) -->
+    <polygon points="180,340 1020,340 1060,290 220,290" fill="#D6D3D1" stroke="#78716C" stroke-width=".6" opacity=".7"/>
+    <text x="600" y="320" text-anchor="middle" class="room-sub" fill="#1F2937">motor court</text>
+
+    <!-- trees -->
+    <g fill="#365314">
+      <circle cx="130" cy="490" r="18"/>
+      <circle cx="170" cy="520" r="14"/>
+      <circle cx="1050" cy="490" r="18"/>
+      <circle cx="1020" cy="520" r="14"/>
+    </g>
+
+    <!-- frangipani pair -->
+    <circle cx="350" cy="320" r="10" fill="#FAF7F2"/>
+    <circle cx="350" cy="320" r="14" fill="#365314" opacity=".6"/>
+    <circle cx="850" cy="320" r="10" fill="#FAF7F2"/>
+    <circle cx="850" cy="320" r="14" fill="#365314" opacity=".6"/>
+
+    <!-- labels -->
+    <g class="dim">
+      <text x="240" y="210" class="dim">RIDGE +9.00</text>
+      <text x="1090" y="385" class="dim">L1 (NEW)</text>
+      <text x="1070" y="460" class="dim">GF</text>
+      <text x="170" y="595" class="dim">SOUTH / BAY</text>
+      <text x="950" y="270" class="dim">NORTH / SERVICE</text>
+    </g>
+
+    <text x="600" y="30" text-anchor="middle" class="title">AXONOMETRIC · LOOKING FROM THE BAY</text>
+    <text x="600" y="50" text-anchor="middle" class="tag">terracotta hipped roof · ivory render · basalt base · teak shutters · wrapping veranda · sala pavilion on east lawn</text>
+  </svg>
+</section>
+
+<!-- 10 MOOD BOARD -->
+<section id="mood">
+  <h2><span class="num">10</span>Mood & Material Board</h2>
+  <p class="lede">The palette: warm terracotta roof, ivory render, charcoal basalt base, dark teak, aged brass, raffia weave, bay water. Every tile is a directive for specification.</p>
+  <div class="mood-grid">
+    <div class="mood tone-terracotta"><span class="cap">Roof · hand-made clay pan tile · Capella copper match</span></div>
+    <div class="mood tone-ivory"><span class="cap" style="color:#1F2937;background:#FAF7F2cc">Walls · warm ivory render · NCS S 1005-Y20R</span></div>
+    <div class="mood tone-basalt"><span class="cap">Base · tumbled Indonesian basalt · charcoal honed</span></div>
+    <div class="mood tone-teak"><span class="cap">Joinery · FSC teak · ink-charcoal stain · oiled</span></div>
+    <div class="mood tone-brass"><span class="cap">Hardware · aged brass · unlacquered</span></div>
+    <div class="mood tone-raffia"><span class="cap" style="color:#1F2937;background:#FAF7F2cc">Ceiling · raffia panel between teak joists</span></div>
+    <div class="mood tone-bay"><span class="cap">Pool · infinity edge · 18 × 5 m · basalt coping</span></div>
+    <div class="mood tone-frangipani"><span class="cap">Landscape · frangipani · heliconia · bird-of-paradise</span></div>
+  </div>
+
+  <h3 style="margin-top:32px">Finish call-out</h3>
+  <table class="num">
+    <tr><th>Element</th><th>Material</th><th>Spec</th></tr>
+    <tr><td>Roof</td><td>Hand-made clay pan tile (25° pitched)</td><td>Weathered terracotta · hipped · copper ridge + gutters</td></tr>
+    <tr><td>Walls (upper)</td><td>Lime-wash render on masonry</td><td>NCS S 1005-Y20R · matte · non-reflective</td></tr>
+    <tr><td>Walls (base)</td><td>Retained STW2 split-face basalt</td><td>Unchanged; cleaned + re-pointed</td></tr>
+    <tr><td>Shutters</td><td>FSC teak louvered</td><td>Ink-charcoal stain · aged-brass hinges</td></tr>
+    <tr><td>Veranda ceiling</td><td>Tongue-&-groove teak</td><td>Natural oil · 90 mm boards</td></tr>
+    <tr><td>Floors (formal)</td><td>Herringbone reclaimed teak</td><td>Natural oil · 140 × 700 mm</td></tr>
+    <tr><td>Floors (bedrooms)</td><td>European white oak</td><td>Brushed · UV oil</td></tr>
+    <tr><td>Floors (wet)</td><td>Honed Carrara + tumbled travertine</td><td>12 mm slab + 20 mm setts</td></tr>
+    <tr><td>Hardware</td><td>Aged brass, unlacquered</td><td>P.E. Guerin + local hand-forged</td></tr>
+    <tr><td>Textiles</td><td>Linen (oat) · velvet (ink) · raffia · vintage rugs</td><td>De Le Cuona + Pierre Frey + local Hà Nội raffia</td></tr>
+    <tr><td>Landscape</td><td>Frangipani · heliconia · bird-of-paradise · mango · sea-almond</td><td>Mature specimens · 3.5 m+ at handover</td></tr>
+  </table>
+</section>
+
+<!-- 11 COMPLIANCE -->
+<section id="compliance">
+  <h2><span class="num">11</span>Compliance Checklist</h2>
+  <p class="lede">Every line from the Jen Tuan Chau appraisal report is carried through the design. Nothing in the brief triggers a new approval.</p>
+  <table class="num">
+    <tr><th>#</th><th>Requirement</th><th>Source</th><th>Status</th></tr>
+    <tr><td>1</td><td>Number of floors ≤ 3 (F1.2)</td><td>QCVN 06:2022/BXD</td><td><span class="flag ok">✓ GF + L1 only</span></td></tr>
+    <tr><td>2</td><td>GFA within approved 1/500 envelope</td><td>QĐ 1112/2012</td><td><span class="flag ok">✓ L1 = GF outline</span></td></tr>
+    <tr><td>3</td><td>Setbacks per 1/500</td><td>QĐ 1112/2012</td><td><span class="flag ok">✓ Retained</span></td></tr>
+    <tr><td>4</td><td>Ridge ≤ 9.0 m</td><td>UNESCO buffer convention</td><td><span class="flag ok">✓ Ridge +9.00 · eave +6.50</span></td></tr>
+    <tr><td>5</td><td>Muted, non-reflective palette</td><td>UNESCO buffer convention</td><td><span class="flag ok">✓ Terracotta + ivory + basalt</span></td></tr>
+    <tr><td>6</td><td>No new land-use fee trigger</td><td>§5 LU fee receipts</td><td><span class="flag ok">✓ No plot change</span></td></tr>
+    <tr><td>7</td><td>Environmental commitment</td><td>§14 CKBVMT</td><td><span class="flag ok">✓ Within accepted scope</span></td></tr>
+    <tr><td>8</td><td>Building permit</td><td>§13 GPXD-miễn</td><td><span class="flag ok">✓ Exempt per 1/500</span></td></tr>
+    <tr><td>9</td><td>LURCs</td><td>Bi 462036 · Bi 462037</td><td><span class="flag ok">✓ Unchanged</span></td></tr>
+    <tr><td>10</td><td>JVA obligations</td><td>Jen Cap × Đào Ngọc 2012</td><td><span class="flag ok">✓ Style-neutral</span></td></tr>
+    <tr><td>11</td><td>Two escape stairs (fire)</td><td>QCVN 06:2022/BXD</td><td><span class="flag warn">→ Add secondary stair at east gable</span></td></tr>
+    <tr><td>12</td><td>Structural verification L1 slab</td><td>New analysis</td><td><span class="flag warn">→ Engineer sign-off pending</span></td></tr>
+    <tr><td>13</td><td>Chiller plant upsize</td><td>MEP</td><td><span class="flag warn">→ Check +33% cooling load</span></td></tr>
+  </table>
+</section>
+
+<footer>
+  <b>Jen Tuan Chau · Hero Villa Concept</b> · Volume 01 · Visual Package<br/>
+  Base drawings: Transform Architecture · Caye Sereno SEA Type 2 · 06/2015 · Phú Hưng Gia (built 2015)<br/>
+  Reference: Capella Singapore — Sentosa Manors · Foster + Partners · Matthew Shang Design Office<br/>
+  Constraint source: Báo cáo thẩm định Jen Tuan Chau (2025)<br/>
+  <i>April 2026 · Issue for Client Review</i>
+</footer>
+
+</body>
+</html>

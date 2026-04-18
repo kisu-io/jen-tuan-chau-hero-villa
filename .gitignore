@@ -1,0 +1,44 @@
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node (for any future tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.pnpm-store/
+
+# Build artefacts
+dist/
+build/
+*.log
+
+# Temp
+.tmp/
+tmp/
+*.bak
+*.backup
+
+# Large architecture base drawings — keep in client VDR, not in repo
+*.dwg
+*.rvt
+*.skp
+*.psd
+*.ai
