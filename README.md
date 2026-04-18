@@ -1,16 +1,16 @@
-# Jen Tuan Chau · Hero Villa Concept
+# Jen Tuan Chau · Biệt thự chủ đạo — Concept
 
-Concept design package for a single colonial-tropical manor villa on **Tuần Châu island, Hạ Long Bay**, prepared for **Công ty TNHH Jen Tuan Chau** — the Quảng Ninh JV behind the Jen Tuan Chau resort master plan.
+Bộ hồ sơ thiết kế concept cho một biệt thự manor phong cách thuộc địa nhiệt đới trên **đảo Tuần Châu, Vịnh Hạ Long**, chuẩn bị cho **Công ty TNHH Jen Tuan Chau** — liên doanh Quảng Ninh đứng sau quy hoạch tổng thể khu nghỉ dưỡng Jen Tuan Chau.
 
-The villa is conceived as a Capella Sentosa Manors peer (Foster + Partners restoration + Matthew Shang Design Office interiors), extended from the existing Caye Sereno SEA Type 2 base drawings so the first floor matches the ground-floor footprint (total GFA ≈ 600 m²).
+Biệt thự được định vị như một công trình ngang tầm Capella Sentosa Manors (kiến trúc phục dựng bởi Foster + Partners, nội thất bởi Matthew Shang Design Office), phát triển mở rộng từ bộ bản vẽ cơ sở Caye Sereno SEA Type 2 để tầng 1 khớp với dấu chân tầng trệt (tổng diện tích sàn ≈ 600 m²).
 
-Issue: April 2026 · For Client Review.
+Phát hành: Tháng 4 năm 2026 · Phát hành để Khách hàng duyệt.
 
 ---
 
-## 🎯 Dashboard
+## 🎯 Bảng điều khiển
 
-**Open [`index.html`](./index.html) in any browser** to get an at-a-glance view of everything in this package — deliverables, source materials, compliance snapshot, and project timeline.
+**Mở [`index.html`](./index.html) trong bất kỳ trình duyệt nào** để xem tổng quan toàn bộ gói — sản phẩm bàn giao, tài liệu nguồn, ảnh chụp nhanh về tuân thủ pháp lý, và tiến độ dự án.
 
 ```
 open index.html
@@ -18,51 +18,51 @@ open index.html
 
 ---
 
-## 📦 Deliverables
+## 📦 Sản phẩm bàn giao
 
-All three deliverables live in [`deliverables/`](./deliverables/):
+Cả ba sản phẩm bàn giao nằm trong [`deliverables/`](./deliverables/):
 
-| File | Format | Purpose |
+| Tệp | Định dạng | Mục đích |
 |---|---|---|
-| `Jen-Tuan-Chau-Hero-Villa-Concept.docx` | Word (27 KB, 12 sections) | Primary concept design document — written narrative, schedule of areas, compliance summary, deliverables register |
-| `Jen-Tuan-Chau-Hero-Villa-Visualization.html` | Single-file HTML (54 KB, 9 SVG drawings) | Interactive visual package — site plan, GF / L1 plans, elevations, axonometric, mood board |
-| `Jen-Tuan-Chau-Hero-Villa-Render-Prompts.md` | Markdown (12 KB, 5 production prompts) | External render prompt pack tuned for Midjourney v6 / Flux.1 Dev / SDXL 1.0 |
+| `Jen-Tuan-Chau-Hero-Villa-Concept.docx` | Word (29 KB, 12 mục) | Tài liệu thiết kế concept chính — thuyết minh, bảng thống kê diện tích, tóm tắt tuân thủ, sổ đăng ký sản phẩm bàn giao |
+| `Jen-Tuan-Chau-Hero-Villa-Visualization.html` | HTML một tệp (56 KB, 9 bản vẽ SVG) | Gói hình ảnh tương tác — mặt bằng tổng, mặt bằng tầng trệt / tầng 1, mặt đứng, hình chiếu trục đo, bảng mood board |
+| `Jen-Tuan-Chau-Hero-Villa-Render-Prompts.md` | Markdown (12 KB, 5 prompt sản xuất) | Gói prompt render ngoại tuyến, tối ưu cho Midjourney v6 / Flux.1 Dev / SDXL 1.0 |
 
 ---
 
-## 📄 Source Materials
+## 📄 Tài liệu nguồn
 
-Supporting documents live in [`source/`](./source/):
+Tài liệu hỗ trợ nằm trong [`source/`](./source/):
 
-| File | Purpose |
+| Tệp | Mục đích |
 |---|---|
-| `bao-cao-tham-dinh-jen-tuan-chau.pdf` | Đơn vị thẩm định giá — appraisal report (primary constraint source) |
-| `bao-cao-tham-dinh-jen-tuan-chau.md` | Markdown transcription for quick reference |
+| `bao-cao-tham-dinh-jen-tuan-chau.pdf` | Đơn vị thẩm định giá — báo cáo thẩm định (nguồn ràng buộc chính) |
+| `bao-cao-tham-dinh-jen-tuan-chau.md` | Bản chép Markdown để tham chiếu nhanh |
 
-The architecture base drawings (the Caye Sereno SEA Type 2 package by Transform Architecture, ~123 MB) are kept in the client VDR and are **not** included in this public repo — too large and confidential.
+Bản vẽ cơ sở kiến trúc (gói Caye Sereno SEA Type 2 của Transform Architecture, ~123 MB) được giữ trong VDR khách hàng và **không** đưa vào kho mã nguồn này — quá lớn và nhạy cảm.
 
 ---
 
-## 🏝 Project snapshot
+## 🏝 Tổng quan dự án
 
-| Parameter | Value |
+| Thông số | Giá trị |
 |---|---|
-| Plot | 15,828 m² (LURCs Bi 462036 + Bi 462037) |
-| Villa GFA | ≈ 600 m² (≈ 300 GF + ≈ 300 L1) |
-| Ridge | ≤ 9.0 m (UNESCO buffer-compliant) |
-| Program | 4 + 1 bedrooms, great room, library, primary suite with bay view |
-| Design language | Colonial-tropical, Capella Sentosa Manors peer |
-| Planning basis | QĐ 1112/2012 (1/500 Lâm Ngọc) · QĐ 5222/2019 (1/2000) |
-| Classification | F1.2 per QCVN 06:2022/BXD |
+| Lô đất | 15.828 m² (GCN Bi 462036 + Bi 462037) |
+| GFA biệt thự | ≈ 600 m² (≈ 300 tầng trệt + ≈ 300 tầng 1) |
+| Đỉnh mái | ≤ 9,0 m (phù hợp vùng đệm UNESCO) |
+| Chương trình | 4 + 1 phòng ngủ, phòng sinh hoạt chung, thư viện, phòng ngủ chính hướng vịnh |
+| Ngôn ngữ thiết kế | Thuộc địa nhiệt đới, ngang tầm Capella Sentosa Manors |
+| Căn cứ quy hoạch | QĐ 1112/2012 (1/500 Lâm Ngọc) · QĐ 5222/2019 (1/2000) |
+| Phân loại | F1.2 theo QCVN 06:2022/BXD |
 
 ---
 
-## 📁 Repository structure
+## 📁 Cấu trúc kho tài liệu
 
 ```
 jen-tuan-chau-repo/
-├── index.html                    ← Dashboard (open this first)
-├── README.md                     ← You are here
+├── index.html                    ← Bảng điều khiển (mở tệp này trước)
+├── README.md                     ← Bạn đang ở đây
 ├── deliverables/
 │   ├── Jen-Tuan-Chau-Hero-Villa-Concept.docx
 │   ├── Jen-Tuan-Chau-Hero-Villa-Visualization.html
@@ -75,10 +75,10 @@ jen-tuan-chau-repo/
 
 ---
 
-## 🔒 Confidentiality
+## 🔒 Bảo mật
 
-This repository is **private**. All content is proprietary to Công ty TNHH Jen Tuan Chau and its design consultants. Do not redistribute without written authorization. See [`LICENSE`](./LICENSE).
+Kho này là **riêng tư**. Toàn bộ nội dung là tài sản độc quyền của Công ty TNHH Jen Tuan Chau và các đơn vị tư vấn thiết kế. Không được phân phối lại nếu chưa có sự cho phép bằng văn bản. Xem [`LICENSE`](./LICENSE).
 
 ---
 
-*Prepared April 2026 · Issue for Client Review*
+*Chuẩn bị tháng 4 năm 2026 · Phát hành để Khách hàng duyệt*

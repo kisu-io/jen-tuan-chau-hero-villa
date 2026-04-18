@@ -1,28 +1,30 @@
-# Jen Tuan Chau · Hero Villa — External Render Prompt Pack
+# Jen Tuan Chau · Biệt thự chủ đạo — Gói Prompt Render Ngoại tuyến
 
-Pack of five production prompts for photoreal architectural and interior renders. Each prompt is tuned for Midjourney v6 / Flux.1 Dev / SDXL-1.0. Use the **master style stem** for consistency across all five; swap only the scene-specific content.
+Gói năm prompt sản xuất cho các hình render kiến trúc và nội thất siêu thực. Mỗi prompt được tinh chỉnh cho Midjourney v6 / Flux.1 Dev / SDXL-1.0. Sử dụng **gốc phong cách chủ đạo (master style stem)** để bảo đảm tính nhất quán giữa cả năm render; chỉ thay đổi phần nội dung riêng của từng cảnh.
 
-The intent is a colonial-tropical peer to **Capella Sentosa Manors** (Foster + Partners restoration + Matthew Shang Design Office interiors), set on **Tuần Châu island, Hạ Long Bay**, with the existing **Caye Sereno SEA Type 2** plan extended so the first floor matches the ground-floor footprint (total GFA ≈ 600 m²).
+Ý định thiết kế là một công trình thuộc địa nhiệt đới ngang tầm **Capella Sentosa Manors** (phục dựng kiến trúc bởi Foster + Partners, nội thất bởi Matthew Shang Design Office), đặt trên **đảo Tuần Châu, Vịnh Hạ Long**, với mặt bằng cơ sở **Caye Sereno SEA Type 2** được mở rộng để tầng 1 khớp với dấu chân tầng trệt (tổng diện tích sàn ≈ 600 m²).
+
+> **Lưu ý dịch thuật:** các khối prompt bên dưới được giữ nguyên bằng tiếng Anh vì các mô hình tạo ảnh (Midjourney, Flux, SDXL) được huấn luyện trên token tiếng Anh và phản hồi tốt nhất với vốn từ kiến trúc tiếng Anh. Chỉ phần văn bản bao quanh được dịch.
 
 ---
 
-## Master style stem (reuse at the head of every prompt)
+## Gốc phong cách chủ đạo (dùng lại ở đầu mỗi prompt)
 
 > colonial-tropical manor villa, Capella Sentosa Singapore design language, architecture by Foster + Partners, interiors by Matthew Shang Design Office, Hạ Long Bay setting on Tuần Châu island, Vietnam, hand-made clay pan tile pitched hipped roof in weathered terracotta, warm ivory lime-wash rendered walls, dark charcoal-stained teak louvered shutters, split-face basalt stone base, wrapping 2.4 m covered verandas on both storeys, copper gutters and ridge with green patina, honest craftsmanship, non-reflective muted UNESCO-buffer-compliant palette, low-rise two-storey silhouette, ridge at 9 m, eave at 6.5 m, FFL at 2.93 m
 
-**Negative (for SDXL / Flux — prepend `--no` for Midjourney):**
+**Negative prompt (cho SDXL / Flux — với Midjourney hãy thêm tiền tố `--no`):**
 > no modern high-rise, no glass curtain wall, no reflective metal cladding, no white plastic, no saturated primary colours, no cartoon, no render-style hard edges, no CGI gloss, no people with visible faces, no text overlays, no watermarks, no logos
 
-**Recommended technical tail:**
-- Midjourney v6 · `--ar 16:9 --style raw --stylize 150 --v 6.1 --quality 2 --seed <fixed-per-series>`
+**Đuôi kỹ thuật đề xuất:**
+- Midjourney v6 · `--ar 16:9 --style raw --stylize 150 --v 6.1 --quality 2 --seed <seed-cố-định-cho-mỗi-series>`
 - Flux.1 Dev · `guidance 3.5, steps 40, 1920×1080, sampler: dpm++ 2m karras, schedule: karras`
 - SDXL 1.0 · `cfg 6, steps 35, sampler: dpm++ 2m sde karras, size 1536×864, refiner 0.8`
 
 ---
 
-## Prompt 01 · Hero Exterior — South-West Corner, Golden Hour
+## Prompt 01 · Ngoại thất chủ đạo — Góc Tây-Nam, giờ vàng
 
-Use this as the cover render for the board deck. It must carry the whole package in one image.
+Dùng làm render bìa cho bộ deck trình bày. Render này phải gánh toàn bộ gói trong một hình.
 
 ```
 [MASTER STEM]
@@ -33,14 +35,14 @@ photographer: Iwan Baan, lighting by James Turrell, cinematography by Roger Deak
 --ar 16:9 --style raw --stylize 200
 ```
 
-**Scene notes**
-- The villa is set back 12 m from the water, pool is an infinity edge to the bay.
-- Frangipani trees should drop shadows on the rendered wall — contrast anchor.
-- Ridge at +9.00 m must read as lower than distant karst peaks — landscape, not skyline.
+**Ghi chú cảnh**
+- Biệt thự lùi 12 m tính từ mép nước, bể bơi là bể tràn hướng ra vịnh.
+- Cây frangipani (sứ) cần đổ bóng lên tường vữa trát — mỏ neo tương phản.
+- Đỉnh mái ở cao độ +9,00 m phải đọc được là *thấp hơn* các đỉnh núi đá vôi ở xa — là cảnh quan, không phải đường chân trời đô thị.
 
 ---
 
-## Prompt 02 · Arrival / Porte-Cochère — Dusk
+## Prompt 02 · Lối vào / mái đón (porte-cochère) — Chạng vạng
 
 ```
 [MASTER STEM]
@@ -53,7 +55,7 @@ photographer: Fernando Guerra, Scott Frances, Hasselblad X2D, 28 mm, f/4, low IS
 
 ---
 
-## Prompt 03 · Formal Living — Bay View, Shutters Open, Morning Light
+## Prompt 03 · Phòng khách trang trọng — hướng vịnh, cửa chớp mở, ánh sáng buổi sáng
 
 ```
 [MASTER STEM]
@@ -66,7 +68,7 @@ photographer: Julia Klimi for AD100, Annie Schlechter, Hasselblad H6D, 24 mm TS-
 
 ---
 
-## Prompt 04 · Primary Suite — Four-Poster, Shutter-Framed Bay View, 6 am
+## Prompt 04 · Phòng ngủ chính — giường bốn cột, khung cửa chớp ôm view vịnh, 6 giờ sáng
 
 ```
 [MASTER STEM]
@@ -79,7 +81,7 @@ photographer: Simon Upton for WoI, Stephen Kent Johnson, Hasselblad H6D 100MP, 3
 
 ---
 
-## Prompt 05 · Pool Terrace & Sala Pavilion — Afternoon
+## Prompt 05 · Sân bể bơi & nhà nghỉ mát (sala pavilion) — buổi chiều
 
 ```
 [MASTER STEM]
@@ -92,28 +94,28 @@ photographer: Dook, Iwan Baan, Hasselblad H6D, 35 mm, f/9, polarising filter, ar
 
 ---
 
-## Series variants (optional)
+## Biến thể chuỗi (tùy chọn)
 
-If you need more than the five core prompts, keep the master stem and swap only the scene directive. Suggested extensions:
+Nếu cần hơn năm prompt lõi, hãy giữ nguyên master stem và chỉ thay phần chỉ định cảnh. Gợi ý mở rộng:
 
-- **Dining at night** — 10-seat teak table candlelit, bay in twilight through open teak-and-glass doors, raffia ceiling lit softly by brass pendants.
-- **Study / library** — half-panelled teak walls, writing desk in front of a single shutter-framed window, art and books, one green banker's lamp.
-- **Guest suite A (L1)** — king bed facing bay, shutter half-open, morning sun, herringbone teak floor, raffia pendant.
-- **Guest lounge / gallery (L1)** — axial corridor view through the atrium void over the foyer with the roof lantern above, coffered teak ceiling.
-- **Outdoor kitchen at night** — wood-fired grill under a timber pergola, copper pots, warm incandescent.
-- **Aerial drone shot** — straight-down plan view of the full plot showing the terracotta roof over the pool, service yard at the north, motor court frangipani pair, to evidence the 28 × 30 m plot with the L1 reading the same outline as the GF.
-
----
-
-## Production notes
-
-1. **Series consistency** — lock a single seed per scene across iterations; re-use the same master stem verbatim. Colour cast should be consistent across all five renders (warm terracotta + ivory + charcoal + bay-blue).
-2. **Atmosphere over detail** — Capella imagery is never clinical. Push for dappled shadow, soft sea haze, half-closed shutters, unlit lamps, lived-in cushions. Nothing should feel freshly unboxed.
-3. **UNESCO buffer reading** — every exterior prompt should have at least one distant karst peak in the background, and the ridge of the villa should sit *below* that skyline. This is a non-negotiable composition rule.
-4. **People** — prefer no visible faces. A background staff figure in cream linen or a guest's linen scarf draped on a sofa is enough to make the space feel inhabited.
-5. **Finish realism** — specify "hand-made clay pan tile" (not "concrete tile"), "lime-wash render" (not "painted stucco"), "FSC teak" (not "stained wood"), "unlacquered aged brass" (not "gold metal"). Generative models react well to material honesty.
-6. **Comparable references for style-transfer** — if your pipeline supports reference images, feed Capella Sentosa Manor public photography, Aman Venice corridor shots, Six Senses Con Dao villa exteriors, Amanoi pool-pavilion dusk imagery.
+- **Phòng ăn buổi tối** — bàn gỗ teak 10 chỗ thắp nến, vịnh trong ánh hoàng hôn nhìn qua cửa teak-và-kính mở, trần raffia chiếu sáng dịu bởi đèn thả đồng thau.
+- **Phòng làm việc / thư viện** — tường teak ốp nửa chiều cao, bàn viết trước một cửa sổ có khung chớp, sách và nghệ thuật, một đèn bàn xanh kiểu banker's lamp.
+- **Phòng ngủ khách A (tầng 1)** — giường king hướng vịnh, chớp cửa mở nửa, nắng sáng, sàn teak xương cá, đèn thả raffia.
+- **Sảnh khách / hành lang trưng bày (tầng 1)** — view trục qua khoảng thông tầng trên foyer với giếng trời, trần teak ô.
+- **Bếp ngoài trời ban đêm** — lò nướng củi dưới pergola gỗ, nồi đồng, ánh đèn sợi đốt ấm.
+- **Ảnh drone từ trên xuống** — view mặt bằng nhìn thẳng xuống toàn lô, thấy mái ngói terracotta phủ trên bể bơi, sân dịch vụ phía bắc, đôi frangipani ở sân xe, để minh chứng lô 28 × 30 m với tầng 1 đọc cùng dấu chân với tầng trệt.
 
 ---
 
-*Prepared alongside the concept design DOCX and the HTML visual package for Công ty TNHH Jen Tuan Chau · April 2026 · Issue for Client Review.*
+## Ghi chú sản xuất
+
+1. **Tính nhất quán chuỗi** — khóa một seed duy nhất cho mỗi cảnh qua các lần lặp; sử dụng lại master stem nguyên văn. Tông màu phải nhất quán qua cả năm render (terracotta ấm + ngà + than + xanh vịnh).
+2. **Bầu không khí hơn chi tiết** — hình ảnh Capella không bao giờ lạnh lẽo. Hãy đẩy bóng đổ lốm đốm, sương biển dịu, chớp cửa mở nửa, đèn không thắp, gối có dấu vết sử dụng. Không điều gì nên trông như vừa mới mở hộp.
+3. **Đọc được vùng đệm UNESCO** — mọi prompt ngoại thất phải có ít nhất một đỉnh karst ở hậu cảnh xa, và đỉnh mái của biệt thự phải nằm *dưới* đường chân trời đó. Đây là quy tắc bố cục không thương lượng.
+4. **Nhân vật** — ưu tiên không có khuôn mặt nhìn thấy. Một bóng nhân viên phục vụ mặc linen kem ở hậu cảnh hoặc khăn linen của khách vắt trên tay ghế sofa là đủ để không gian có cảm giác có người ở.
+5. **Tính chân thực vật liệu** — hãy chỉ rõ "hand-made clay pan tile" (không phải "concrete tile"), "lime-wash render" (không phải "painted stucco"), "FSC teak" (không phải "stained wood"), "unlacquered aged brass" (không phải "gold metal"). Các mô hình sinh phản hồi tốt với sự chân thực vật liệu.
+6. **Tham chiếu so sánh cho style-transfer** — nếu pipeline hỗ trợ ảnh tham chiếu, hãy đưa ảnh công khai của Capella Sentosa Manor, ảnh hành lang Aman Venice, ngoại thất biệt thự Six Senses Côn Đảo, ảnh chạng vạng pavilion bể bơi Amanoi.
+
+---
+
+*Chuẩn bị cùng với DOCX thiết kế concept và gói hình ảnh HTML cho Công ty TNHH Jen Tuan Chau · Tháng 4 năm 2026 · Phát hành để Khách hàng duyệt.*
