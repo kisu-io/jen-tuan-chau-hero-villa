@@ -44,7 +44,7 @@
     text-transform:uppercase;letter-spacing:.18em;color:var(--warm);margin-top:6px}
   .kpi .k .s{font-size:11px;color:var(--mutedTxt);margin-top:4px}
 
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 
   .card{background:#fff;border:1px solid var(--rule);padding:0;display:flex;flex-direction:column;
@@ -129,9 +129,53 @@
 <!-- SẢN PHẨM BÀN GIAO -->
 <section id="deliverables">
   <h2><span class="num">02</span>Sản phẩm bàn giao</h2>
-  <p class="lede">Gói thiết kế ba tập. Mỗi tài liệu là một hạng mục độc lập được ký duyệt riêng, đồng thời chéo-tham chiếu hai tài liệu còn lại.</p>
+  <p class="lede">Gói thiết kế bốn hạng mục: mô hình tương tác Three.js và ba tập tài liệu. Mỗi hạng mục độc lập được ký duyệt riêng, đồng thời chéo-tham chiếu các tài liệu còn lại.</p>
 
   <div class="grid3">
+    <!-- CARD 0: INTERACTIVE 3D MODEL (flagship) -->
+    <div class="card">
+      <div class="thumb" style="background:linear-gradient(180deg,#D8E3EA 0%,#E8DEC9 55%,#D5C7A4 100%)">
+        <svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">
+          <!-- karst silhouettes behind -->
+          <g fill="#6B7A85" opacity=".5">
+            <polygon points="0,150 40,120 70,145 110,115 150,150 0,160"/>
+            <polygon points="280,148 320,112 360,145 400,125 400,160 280,160"/>
+          </g>
+          <!-- axonometric villa mass -->
+          <g transform="translate(110,60)">
+            <!-- base -->
+            <polygon points="0,110 90,135 180,110 90,85" fill="#44403C" stroke="#1F2937" stroke-width="1"/>
+            <!-- walls (ivory) -->
+            <polygon points="0,110 0,75 90,50 90,85" fill="#EDE4D3" stroke="#1F2937" stroke-width="1"/>
+            <polygon points="90,85 90,50 180,75 180,110" fill="#D9CDB6" stroke="#1F2937" stroke-width="1"/>
+            <!-- roof hipped terracotta -->
+            <polygon points="0,75 90,50 180,75 150,35 30,35" fill="#C87350" stroke="#1F2937" stroke-width="1"/>
+            <polygon points="30,35 150,35 90,20" fill="#8C5830" stroke="#1F2937" stroke-width="1"/>
+            <!-- shutters -->
+            <g fill="#2E1B0F">
+              <rect x="10" y="82" width="8" height="18"/><rect x="25" y="82" width="8" height="18"/>
+              <rect x="40" y="82" width="8" height="18"/><rect x="55" y="82" width="8" height="18"/>
+              <rect x="70" y="82" width="8" height="18"/>
+            </g>
+            <!-- pool slab in foreground -->
+            <polygon points="-10,130 50,150 110,135 50,117" fill="#94B9C9" opacity=".9" stroke="#1F2937" stroke-width=".8"/>
+          </g>
+          <!-- orbit ring -->
+          <ellipse cx="200" cy="150" rx="130" ry="28" fill="none" stroke="#B45309" stroke-width="1" stroke-dasharray="4 3" opacity=".75"/>
+          <text x="200" y="205" text-anchor="middle" font="700 10px 'Helvetica Neue',Arial,sans-serif" fill="#1F2937" letter-spacing="2">MODEL · 01 — INTERACTIVE MASSING</text>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="kind">Three.js · Mô hình tương tác</div>
+        <h3>Mô hình khối tích tương tác</h3>
+        <p>Maket gỗ số: quay orbit, bóc mái, ẩn tầng 1, cắt mặt cắt Bắc-Nam, trượt thời gian trong ngày để xem đổ bóng, và bay tới 6 khung hình render + 7 phòng. Dựng trên kích thước thật của bản vẽ cơ sở (28 × 12 m · đỉnh +9,00 · hiên hoàn toàn 2,4 m).</p>
+        <div class="actions">
+          <a class="btn" href="deliverables/interactive-model/index.html">Mở mô hình</a>
+          <a class="btn ghost" href="deliverables/interactive-model/">Xem mã nguồn</a>
+        </div>
+      </div>
+    </div>
+
     <!-- CARD 1: DOCX -->
     <div class="card">
       <div class="thumb" style="background:linear-gradient(160deg,#FAF7F2 0%,#EBE1CE 100%)">
@@ -339,7 +383,8 @@
       <h3 style="margin-top:0">Cấu trúc</h3>
       <ul style="font-size:14.5px;line-height:1.7;color:var(--mutedTxt)">
         <li><code>index.html</code> — bảng điều khiển này (gốc kho)</li>
-        <li><code>deliverables/</code> — ba sản phẩm thiết kế bàn giao</li>
+        <li><code>deliverables/</code> — bốn sản phẩm thiết kế bàn giao (gồm mô hình 3D tương tác)</li>
+        <li><code>deliverables/interactive-model/</code> — mô hình khối tích Three.js (mở <code>index.html</code>)</li>
         <li><code>source/</code> — báo cáo thẩm định nguồn (PDF + MD)</li>
         <li><code>README.md</code> — readme dự án cho GitHub</li>
         <li><code>LICENSE</code> — điều khoản sử dụng (bảo lưu mọi quyền mặc định)</li>

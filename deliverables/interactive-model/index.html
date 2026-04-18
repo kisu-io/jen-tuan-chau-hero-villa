@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jen Tuan Chau · Biệt thự chủ đạo · Interactive Model</title>
+<style>
+  :root{
+    --ink:#1F2937; --warm:#B45309; --soft:#78716C; --rule:#D6D3D1;
+    --ivory:#FAF7F2; --paper:#F5F1EA; --mutedTxt:#57534E;
+    --stone:#44403C; --teak:#2E1B0F; --terracotta:#C87350; --copper:#8C5830;
+    --bay:#94B9C9; --sand:#D8CBB1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%;background:var(--paper);color:var(--ink);
+    font:14px/1.5 Georgia,"Times New Roman",serif;overflow:hidden;}
+
+  /* app shell */
+  .app{position:fixed;inset:0;display:grid;
+    grid-template-columns:320px 1fr 280px;grid-template-rows:52px 1fr;
+    grid-template-areas:"head head head" "left stage right";}
+
+  header.head{grid-area:head;display:flex;align-items:center;gap:18px;
+    padding:0 22px;background:var(--ink);color:var(--ivory);
+    border-bottom:3px solid var(--warm);}
+  header.head .badge{letter-spacing:.35em;font:700 10px/1 "Helvetica Neue",Arial,sans-serif;
+    padding:6px 10px;border:1px solid #FAF7F2aa;background:rgba(255,255,255,.05)}
+  header.head h1{margin:0;font:700 16px/1 Georgia,serif;letter-spacing:-.2px}
+  header.head h1 i{font:italic 400 13px/1 Georgia,serif;color:#FAF7F2aa;margin-left:8px;letter-spacing:.5px}
+  header.head .spacer{flex:1}
+  header.head .mode{display:flex;gap:0;border:1px solid #FAF7F2aa}
+  header.head .mode button{background:transparent;color:var(--ivory);border:0;padding:7px 14px;
+    font:600 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;
+    border-right:1px solid #FAF7F2aa}
+  header.head .mode button:last-child{border-right:0}
+  header.head .mode button.on{background:var(--warm);color:#fff}
+
+  /* left panel (layers + cameras) */
+  aside.left{grid-area:left;background:#fff;border-right:1px solid var(--rule);
+    overflow-y:auto;padding:20px 22px 40px}
+  aside.right{grid-area:right;background:#fff;border-left:1px solid var(--rule);
+    overflow-y:auto;padding:20px 22px 40px}
+
+  aside h3{font:700 10px/1 "Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.2em;color:var(--warm);
+    margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+  aside h3:first-child{margin-top:0}
+
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:7px 0;font-size:13px;color:var(--ink)}
+  .row label{flex:1;cursor:pointer;user-select:none}
+  .row .sub{color:var(--mutedTxt);font:italic 11px/1.3 Georgia,serif;display:block;margin-top:2px}
+
+  /* toggle */
+  .tog{position:relative;width:32px;height:18px;background:var(--rule);border-radius:99px;cursor:pointer;transition:background .15s;flex:0 0 32px}
+  .tog::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;background:#fff;border-radius:50%;transition:left .15s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+  .tog.on{background:var(--warm)}
+  .tog.on::after{left:16px}
+
+  /* camera buttons */
+  .cam{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--rule);
+    padding:10px 12px;margin:6px 0;cursor:pointer;transition:background .15s, border-color .15s;
+    font:13px/1.3 Georgia,serif;color:var(--ink)}
+  .cam:hover{background:#fff;border-color:var(--ink)}
+  .cam.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .cam .n{font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.18em;color:var(--warm);display:block;margin-bottom:4px}
+  .cam.on .n{color:#F4C37A}
+  .cam .d{font-style:italic;font-size:11px;color:var(--mutedTxt);display:block;margin-top:3px}
+  .cam.on .d{color:#FAF7F2aa}
+
+  /* slider */
+  .slider{width:100%;margin:6px 0 2px}
+  .slider input{width:100%;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer}
+  .slider input::-webkit-slider-runnable-track{height:2px;background:var(--rule)}
+  .slider input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;background:var(--warm);border-radius:50%;margin-top:-6px;cursor:pointer}
+  .slider input::-moz-range-track{height:2px;background:var(--rule)}
+  .slider input::-moz-range-thumb{width:14px;height:14px;background:var(--warm);border:0;border-radius:50%;cursor:pointer}
+  .slider-row{display:flex;justify-content:space-between;font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.12em;color:var(--mutedTxt);text-transform:uppercase;margin-bottom:2px}
+  .slider-row .v{color:var(--warm);font-variant-numeric:tabular-nums}
+
+  /* stage */
+  .stage{grid-area:stage;position:relative;background:
+    linear-gradient(180deg,#D8E3EA 0%, #E8DEC9 45%, #D5C7A4 100%);}
+  .stage canvas{display:block;width:100%;height:100%}
+  .stage .hud{position:absolute;left:18px;top:18px;
+    background:rgba(31,41,55,.82);color:var(--ivory);padding:10px 14px;
+    font:12px/1.4 Georgia,serif;backdrop-filter:blur(4px);pointer-events:none;max-width:280px}
+  .stage .hud .n{font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.18em;color:#F4C37A;display:block;margin-bottom:3px}
+  .stage .legend{position:absolute;right:18px;top:18px;background:rgba(255,255,255,.92);
+    padding:10px 14px;font:11px/1.4 Georgia,serif;color:var(--ink);border:1px solid var(--rule)}
+  .stage .legend b{font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.18em;color:var(--warm);display:block;margin-bottom:6px;text-transform:uppercase}
+  .stage .legend .kv{display:flex;justify-content:space-between;gap:14px;padding:2px 0}
+  .stage .legend .kv span:last-child{color:var(--mutedTxt);font-variant-numeric:tabular-nums}
+  .stage .compass{position:absolute;right:18px;bottom:18px;width:64px;height:64px;
+    background:rgba(255,255,255,.92);border:1px solid var(--rule);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font:700 11px/1 "Helvetica Neue",Arial,sans-serif;color:var(--warm)}
+  .stage .room-label{position:absolute;pointer-events:none;color:var(--ink);
+    font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;
+    background:rgba(250,247,242,.9);padding:3px 7px;border:1px solid var(--ink);white-space:nowrap;transform:translate(-50%,-50%)}
+  .stage .tip{position:absolute;pointer-events:none;background:rgba(31,41,55,.92);color:var(--ivory);
+    padding:6px 10px;font:12px/1.35 Georgia,serif;white-space:nowrap;transform:translate(-50%,-120%);
+    border-bottom:2px solid var(--warm);opacity:0;transition:opacity .15s}
+  .stage .tip.show{opacity:1}
+  .stage .tip b{display:block;font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.18em;color:#F4C37A;margin-bottom:3px}
+
+  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--mutedTxt);font:italic 16px Georgia,serif}
+
+  /* tweaks panel (in-design tweaks) */
+  .tweaks{position:fixed;right:296px;bottom:20px;width:260px;
+    background:#fff;border:1px solid var(--ink);padding:14px 16px;z-index:20;display:none}
+  .tweaks.show{display:block}
+  .tweaks h4{margin:0 0 8px;font:700 10px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--warm)}
+  .tweaks .row{padding:4px 0;font-size:12px}
+
+  @media (max-width:1100px){
+    .app{grid-template-columns:260px 1fr 240px}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="head">
+    <div class="badge">MODEL · 01</div>
+    <h1>Jen Tuan Chau · Biệt thự chủ đạo <i>Interactive massing model — working draft</i></h1>
+    <div class="spacer"></div>
+    <div class="mode">
+      <button data-mode="orbit" class="on">Orbit</button>
+      <button data-mode="section">Section</button>
+      <button data-mode="explode">Exploded</button>
+    </div>
+  </header>
+
+  <aside class="left" id="panel-left">
+    <h3>Layers</h3>
+    <div class="row"><label for="t-roof">Clay-tile roof<span class="sub">hipped · weathered terracotta</span></label><div class="tog on" id="t-roof"></div></div>
+    <div class="row"><label for="t-l1">Tầng 1 <span class="sub">new full-match extension</span></label><div class="tog on" id="t-l1"></div></div>
+    <div class="row"><label for="t-gf">Tầng trệt<span class="sub">retained base</span></label><div class="tog on" id="t-gf"></div></div>
+    <div class="row"><label for="t-veranda">Veranda + columns<span class="sub">2.4 m wrap, south + west</span></label><div class="tog on" id="t-veranda"></div></div>
+    <div class="row"><label for="t-shutters">Teak louvered shutters<span class="sub">ink-charcoal FSC teak</span></label><div class="tog on" id="t-shutters"></div></div>
+    <div class="row"><label for="t-landscape">Landscape + pool<span class="sub">sala, trees, infinity pool</span></label><div class="tog on" id="t-landscape"></div></div>
+    <div class="row"><label for="t-context">Bay context<span class="sub">karst, water plane, mist</span></label><div class="tog on" id="t-context"></div></div>
+    <div class="row"><label for="t-rooms">Room labels<span class="sub">floating names on hover</span></label><div class="tog on" id="t-rooms"></div></div>
+
+    <h3>Section cut</h3>
+    <div class="slider-row"><span>North ← → South</span><span class="v" id="v-section">off</span></div>
+    <div class="slider"><input type="range" id="r-section" min="0" max="100" step="1" value="0"></div>
+
+    <h3>Time of day</h3>
+    <div class="slider-row"><span>Sun angle</span><span class="v" id="v-time">16:00</span></div>
+    <div class="slider"><input type="range" id="r-time" min="6" max="20" step="0.25" value="16"></div>
+
+    <h3>Exploded height</h3>
+    <div class="slider-row"><span>Lift</span><span class="v" id="v-explode">0 m</span></div>
+    <div class="slider"><input type="range" id="r-explode" min="0" max="100" step="1" value="0"></div>
+  </aside>
+
+  <main class="stage" id="stage">
+    <div class="loading" id="loading">Loading model…</div>
+    <div class="hud" id="hud">
+      <span class="n">Massing · SW aerial</span>
+      Drag to orbit · Right-drag to pan · Scroll to zoom
+    </div>
+    <div class="legend">
+      <b>Key dimensions</b>
+      <div class="kv"><span>Plot</span><span>28 × 30 m</span></div>
+      <div class="kv"><span>GFA total</span><span>~600 m²</span></div>
+      <div class="kv"><span>Ridge</span><span>+9.00 m</span></div>
+      <div class="kv"><span>Eave</span><span>+6.50 m</span></div>
+      <div class="kv"><span>FFL L1</span><span>+6.48 m</span></div>
+      <div class="kv"><span>FFL GF</span><span>+2.93 m</span></div>
+      <div class="kv"><span>Pool</span><span>18 × 5 m</span></div>
+    </div>
+    <div class="compass">N ↑</div>
+    <div class="tip" id="tip"></div>
+  </main>
+
+  <aside class="right">
+    <h3>Cameras</h3>
+    <button class="cam on" data-cam="sw"><span class="n">01 · Hero SW</span>Pool corner at golden hour<span class="d">Render Prompt 01 vantage</span></button>
+    <button class="cam" data-cam="arrival"><span class="n">02 · Arrival</span>North motor court at dusk<span class="d">Porte-cochère framing</span></button>
+    <button class="cam" data-cam="bay"><span class="n">03 · Bay face</span>South elevation from water<span class="d">18×5 m pool in foreground</span></button>
+    <button class="cam" data-cam="axon"><span class="n">04 · Axonometric</span>Isometric from the SE<span class="d">Full composition read</span></button>
+    <button class="cam" data-cam="plan"><span class="n">05 · Site plan</span>Top-down, north-up<span class="d">Footprint + landscape</span></button>
+    <button class="cam" data-cam="sala"><span class="n">06 · Sala</span>East lawn pavilion<span class="d">Pool terrace long view</span></button>
+
+    <h3>Room focus</h3>
+    <button class="cam" data-room="foyer"><span class="n">GF · Foyer</span>Double-height · coffered teak<span class="d">18 m²</span></button>
+    <button class="cam" data-room="living"><span class="n">GF · Formal living</span>Bay view · raffia ceiling<span class="d">66 m²</span></button>
+    <button class="cam" data-room="dining"><span class="n">GF · Dining</span>10-seat teak · bay view<span class="d">40 m²</span></button>
+    <button class="cam" data-room="primary"><span class="n">GF · Primary suite</span>Four-poster · raffia headboard<span class="d">36 m² + 30 m² ensuite</span></button>
+    <button class="cam" data-room="guestA"><span class="n">L1 · Guest Suite A</span>King · bay view<span class="d">32 m²</span></button>
+    <button class="cam" data-room="guestB"><span class="n">L1 · Guest Suite B</span>King · bay view<span class="d">32 m²</span></button>
+    <button class="cam" data-room="lounge"><span class="n">L1 · Guest lounge</span>Gallery · half-panel teak<span class="d">58 m²</span></button>
+  </aside>
+</div>
+
+<div class="tweaks" id="tweaks">
+  <h4>Tweaks</h4>
+  <div class="row"><label for="tw-palette">Palette variant</label>
+    <select id="tw-palette" style="font:12px Georgia,serif">
+      <option value="capella">Capella (default)</option>
+      <option value="aman">Aman (cooler stone)</option>
+      <option value="schematic">Schematic model</option>
+    </select>
+  </div>
+  <div class="row"><label for="tw-trees">Tropical planting</label><div class="tog on" id="tw-trees"></div></div>
+  <div class="row"><label for="tw-fog">Bay haze</label><div class="tog on" id="tw-fog"></div></div>
+</div>
+
+<!-- Three.js via ES module import map (r160) -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module" src="model/main.js"></script>
+
+<!-- tweaks default bundle -->
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "capella",
+  "trees": true,
+  "fog": true
+}/*EDITMODE-END*/;
+// host hook
+window.addEventListener('message', (e)=>{
+  if(!e.data || typeof e.data!=='object') return;
+  if(e.data.type==='__activate_edit_mode'){ document.getElementById('tweaks').classList.add('show'); }
+  if(e.data.type==='__deactivate_edit_mode'){ document.getElementById('tweaks').classList.remove('show'); }
+});
+window.parent.postMessage({type:'__edit_mode_available'},'*');
+</script>
+
+</body>
+</html>
